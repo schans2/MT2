@@ -1,2 +1,5 @@
-# MT2
- A place for my Music & Technology II project to live
+# Music & Tech 2 Project Blog
+## Sam Schantz
+
+### About (1/13/22)
+This blog is for a class I am currently taking: Music and Technology II. I hope it will fully and accurately convey whatever the timeline ends up being for this project's formation. For now, though, the creation of this blog certainly is a first step in that direction. As for project ideas, right now I'm thinking that I want to build a web-interface instrument of some kind. The term "instrument" might be just a bit disingenuous, though, as I'm imagining something you could play a full, multi-faceted song on. Going forward, I'll be thinking a lot about what sort of control sceme I should set up. Should the user perhaps be able to pre-program some kind of sequence for a bass and drum pattern and then play the lead, for instance? Or should there be multiple, simultaneously controllable timbres for the user? These are the kinds of things I'll be thinking about going forward.
