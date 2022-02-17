@@ -22,4 +22,12 @@ $(document).ready(function() {
   $("#vol").on("input", function() {
     eval(playStatus).setVolume($(this).val());
   });
+
+  new jBox("Modal", {
+    attach: "#modTest",
+    title: "Sequencing Test",
+    width: "100%",
+    height: "100%",
+    content: $("#seqTable")
+  });
 });
