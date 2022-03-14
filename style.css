@@ -6,8 +6,8 @@ body {
   display: grid;
   width: 100%;
   height: 100%;
-  /* grid-template-rows: repeat(12, 1fr); */
-  grid-template-rows: repeat(12, 80px);
+  grid-template-rows: repeat(12, 1fr);
+  /* grid-template-rows: repeat(12, 80px); */
   grid-template-columns: repeat(32, 1fr);
 }
 
