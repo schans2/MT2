@@ -5,9 +5,10 @@ $(document).ready(function() {
   let sine = new Wad({source: "sine", pitch: "Db3", env: {hold: -1}});
   let triangle = new Wad({source: "square", pitch: "D#3", env: {hold: -1}});
   let playStatus = "none";
-  let drag = false;
 
-  // $("body").mousedown(function() { drag = true; });
+  // Modal variables
+  let drag = false;
+  let octave = 1;
 
   $("body").mouseup(function() { drag = false; });
 
@@ -28,7 +29,7 @@ $(document).ready(function() {
   });
 
   function modListen() {
-    
+
     $(".seqTable>div").off();
 
     $(".seqTable>div").mousedown(function() {
@@ -62,15 +63,28 @@ $(document).ready(function() {
         }
       }
     });
+
+    $("input[name='octave']").change(function() {
+      octave = $(this).val();
+      $(".seqTable").each(function() {
+        if($(this).hasClass('o' + octave)) { $(this).show(1); }
+        else { $(this).hide(1); }
+      });
+    });
   }
 
+  // Modal declarations
   new jBox("Modal", {
     attach: "#sawMod",
     title: "Sequencing Test",
     width: "100%",
     height: "100%",
     content: $("#seqContainer").clone(),
-    onCreated: function() { modListen(); }
+    onCreated: function() { modListen(); },
+    onOpen: function() {
+      $(".seqTable").hide(1);
+      $(".o1").show(1);
+    }
   });
 
   new jBox("Modal", {
@@ -79,7 +93,11 @@ $(document).ready(function() {
     width: "100%",
     height: "100%",
     content: $("#seqContainer").clone(),
-    onCreated: function() { modListen(); }
+    onCreated: function() { modListen(); },
+    onOpen: function() {
+      $(".seqTable").hide(1);
+      $(".o1").show(1);
+    }
   });
 
   new jBox("Modal", {
@@ -88,7 +106,11 @@ $(document).ready(function() {
     width: "100%",
     height: "100%",
     content: $("#seqContainer").clone(),
-    onCreated: function() { modListen(); }
+    onCreated: function() { modListen(); },
+    onOpen: function() {
+      $(".seqTable").hide(1);
+      $(".o1").show(1);
+    }
   });
 
   new jBox("Modal", {
@@ -97,6 +119,10 @@ $(document).ready(function() {
     width: "100%",
     height: "100%",
     content: $("#seqContainer").clone(),
-    onCreated: function() { modListen(); }
+    onCreated: function() { modListen(); },
+    onOpen: function() {
+      $(".seqTable").hide(1);
+      $(".o1").show(1);
+    }
   });
 });
