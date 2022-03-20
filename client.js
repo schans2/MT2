@@ -27,26 +27,12 @@ $(document).ready(function() {
     eval(playStatus).setVolume($(this).val());
   });
 
-  // Every other one works?
-  $("#seqTable>div").mousedown(function() {
-    drag = true;
-    if($(this).hasClass("note")) {
-      $(this).removeClass("note");
-      $(this).css("backgroundColor", "white");
-    }
-    else {
-      // Multi-color descision tree thing here
-      // But for now...
-      $(this).addClass("note");
-      $(this).css("backgroundColor", "tomato");
-    }
-    // if($(this).hasClass("r12")) {
+  function modListen() {
+    
+    $(".seqTable>div").off();
 
-    // }
-  });
-
-  $("#seqTable>div").mouseenter(function() {
-    if(drag) {
+    $(".seqTable>div").mousedown(function() {
+      drag = true;
       if($(this).hasClass("note")) {
         $(this).removeClass("note");
         $(this).css("backgroundColor", "white");
@@ -57,14 +43,60 @@ $(document).ready(function() {
         $(this).addClass("note");
         $(this).css("backgroundColor", "tomato");
       }
-    }
-  });
+      // if($(this).hasClass("r12")) {
+
+      // }
+    });
+
+    $(".seqTable>div").mouseenter(function() {
+      if(drag) {
+        if($(this).hasClass("note")) {
+          $(this).removeClass("note");
+          $(this).css("backgroundColor", "white");
+        }
+        else {
+          // Multi-color descision tree thing here
+          // But for now...
+          $(this).addClass("note");
+          $(this).css("backgroundColor", "tomato");
+        }
+      }
+    });
+  }
 
   new jBox("Modal", {
-    attach: "#modTest",
+    attach: "#sawMod",
     title: "Sequencing Test",
     width: "100%",
     height: "100%",
-    content: $("#seqContainer")
+    content: $("#seqContainer").clone(),
+    onCreated: function() { modListen(); }
+  });
+
+  new jBox("Modal", {
+    attach: "#sqMod",
+    title: "Sequencing Test",
+    width: "100%",
+    height: "100%",
+    content: $("#seqContainer").clone(),
+    onCreated: function() { modListen(); }
+  });
+
+  new jBox("Modal", {
+    attach: "#sinMod",
+    title: "Sequencing Test",
+    width: "100%",
+    height: "100%",
+    content: $("#seqContainer").clone(),
+    onCreated: function() { modListen(); }
+  });
+
+  new jBox("Modal", {
+    attach: "#triMod",
+    title: "Sequencing Test",
+    width: "100%",
+    height: "100%",
+    content: $("#seqContainer").clone(),
+    onCreated: function() { modListen(); }
   });
 });
