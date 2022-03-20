@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  alert("Hello world, jQuery connected!");
 
   let saw = new Wad({source: "sawtooth", pitch: "C2", env: {hold: -1}});
   let square = new Wad({source: "square", pitch: "G3", env: {hold: -1}});
@@ -8,7 +7,7 @@ $(document).ready(function() {
   let playStatus = "none";
   let drag = false;
 
-  $("body").mousedown(function() { drag = true; });
+  // $("body").mousedown(function() { drag = true; });
 
   $("body").mouseup(function() { drag = false; });
 
@@ -28,6 +27,24 @@ $(document).ready(function() {
     eval(playStatus).setVolume($(this).val());
   });
 
+  // Every other one works?
+  $("#seqTable>div").mousedown(function() {
+    drag = true;
+    if($(this).hasClass("note")) {
+      $(this).removeClass("note");
+      $(this).css("backgroundColor", "white");
+    }
+    else {
+      // Multi-color descision tree thing here
+      // But for now...
+      $(this).addClass("note");
+      $(this).css("backgroundColor", "tomato");
+    }
+    // if($(this).hasClass("r12")) {
+
+    // }
+  });
+
   $("#seqTable>div").mouseenter(function() {
     if(drag) {
       if($(this).hasClass("note")) {
@@ -41,9 +58,6 @@ $(document).ready(function() {
         $(this).css("backgroundColor", "tomato");
       }
     }
-    // if($(this).hasClass("r12")) {
-
-    // }
   });
 
   new jBox("Modal", {
