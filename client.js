@@ -30,19 +30,26 @@ $(document).ready(function() {
 
   function modListen() {
 
+    let noteSeq = [];
+
     $(".seqTable>div").off();
 
     $(".seqTable>div").mousedown(function() {
       drag = true;
-      if($(this).hasClass("note")) {
-        $(this).removeClass("note");
+      // Remember to implement proper multi-octave support
+      if($(this).hasClass("o1")) {
+        $(this).removeClass("o1");
+        noteSeq.splice($.inArray($(this), noteSeq), 1);
+        console.log("yes");
         $(this).css("backgroundColor", "white");
       }
       else {
         // Multi-color descision tree thing here
         // But for now...
-        $(this).addClass("note");
+        $(this).addClass($(this).parent().attr("class").split(/\s+/)[2]);
         $(this).css("backgroundColor", "tomato");
+        noteSeq.push($(this));
+        console.log(noteSeq.sort());
       }
       // if($(this).hasClass("r12")) {
 
@@ -51,15 +58,20 @@ $(document).ready(function() {
 
     $(".seqTable>div").mouseenter(function() {
       if(drag) {
-        if($(this).hasClass("note")) {
-          $(this).removeClass("note");
+        // Remember to implement proper multi-octave support
+        if($(this).hasClass("o1")) {
+          $(this).removeClass("o1");
+          noteSeq.splice($.inArray($(this), noteSeq), 1);
+          console.log("yes");
           $(this).css("backgroundColor", "white");
         }
         else {
           // Multi-color descision tree thing here
           // But for now...
-          $(this).addClass("note");
+          $(this).addClass($(this).parent().attr("class").split(/\s+/)[2]);
           $(this).css("backgroundColor", "tomato");
+          noteSeq.push($(this));
+          console.log(noteSeq.sort());
         }
       }
     });
@@ -70,6 +82,56 @@ $(document).ready(function() {
         if($(this).hasClass('o' + octave)) { $(this).show(1); }
         else { $(this).hide(1); }
       });
+    });
+
+    // Currently unused -- need to incorporate
+    let itr = new Wad.SoundIterator({
+      files: [saw, square, sine, triangle],
+      random: false,
+      randomPlaysBeforeRepeat: 0
+    });
+
+    // Script for playing a sequence
+    $("button[name='seqPlayTog']").click(function() {
+      // Tempo = 60 BPM for now (1/32nd note = 0.125s)
+      // Process the 32 "ticks" per measure
+      let ctr = 1;
+      function sequentialize() {
+        setTimeout(() => {
+          // Find out what notes are triggering on this tick
+          for(let i = 0; i < noteSeq.length; i++) {
+            if(noteSeq[i].hasClass("c" + ctr)) {
+              // FOr each triggered note, search ahead to see how long it should be sustained
+              let noteLen = 0.125;
+              // Proxy note object
+              let scanNote = noteSeq[i].clone()
+                .removeClass("c" + ctr).addClass("c" + (ctr + 1))
+                .removeClass("o1").addClass("o1");
+              for(let j = 0; j < noteSeq.length; j++) {
+                // See if "one tick ahead" exists
+                if(noteSeq[j].attr("class") === scanNote.attr("class")) {
+                  // Increment proxy note and reset counter to continue looking ahead
+                  let prevCtr = scanNote.attr("class").split(/\s+/)[1];
+                  let nextNum = prevCtr[2] ? parseInt((prevCtr[1] + prevCtr[2])) + 1
+                    : parseInt(prevCtr[1]) + 1;
+                  // console.log(scanNote);
+                  scanNote.removeClass(prevCtr).addClass("c" + nextNum)
+                    .removeClass("o1").addClass("o1");
+                  // console.log(scanNote);
+                  noteLen += 0.125;
+                  console.log(noteLen);
+                  j = 0; // Still inconsistent depending on input order
+                  // Look into array sorting
+                }
+              }
+            }
+          }
+          console.log(ctr);
+          ctr++;
+          if(ctr < 33) { sequentialize(); }
+        }, 125);
+      }
+      sequentialize();
     });
   }
 
