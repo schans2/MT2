@@ -34,9 +34,78 @@ $(document).ready(function() {
   let sinSeq = [];
   let triSeq = [];
 
+  // Script for playing a sequence
+  function playSequence(tableArr) {
+    // Tempo = 60 BPM for now (1/32nd note = 0.125s)
+    // Process the 32 "ticks" per measure
+    if(tableArr === "none") {
+      tableArr = $(this).parent().parent().siblings().text();
+      switch (tableArr) {
+        case "Saw Sequencing":
+          tableArr = "sawSeq";
+          break;
+        case "Square Sequencing":
+          tableArr = "sqSeq";
+          break;
+        case "Sine Sequencing":
+          tableArr = "sinSeq";
+          break;
+        case "Triangle Sequencing":
+          tableArr = "triSeq";
+          break;
+      }
+    }
+    let ctr = 1;
+    // Sort sequence input data
+    eval(tableArr).sort(function(a, b) {
+      colA = parseInt(a.attr("class").split(/\s+/)[1].split('c')[1]);
+      colB = parseInt(b.attr("class").split(/\s+/)[1].split('c')[1]);
+      if(colA === colB) { return 0; }
+      else if(colA > colB) { return 1; }
+      else { return -1; }
+    });
+    seqFound = [];
+    function sequentialize() {
+      setTimeout(() => {
+        // Find out what notes are triggering on this tick
+        for(let i = 0; i < eval(tableArr).length; i++) {
+          let nsRow = parseInt(eval(tableArr)[i].attr("class").split(/\s+/)[0].split('r')[1]);
+          if(eval(tableArr)[i].hasClass("c" + ctr) &&
+            // https://www.codegrepper.com/code-examples/javascript/js+2d+array+includes
+            !seqFound.some(row => JSON.stringify(row) === JSON.stringify([nsRow, ctr]))
+          ) {
+            // For each triggered note, search ahead to see how long it should be sustained
+            let noteLen = 0.125;
+            // Proxy note object
+            let scanNote = eval(tableArr)[i].clone()
+              .removeClass("c" + ctr).addClass("c" + (ctr + 1))
+              .removeClass("o1").addClass("o1");
+            for(let j = i; j < eval(tableArr).length; j++) {
+              // See if "one tick ahead" exists
+              if(eval(tableArr)[j].attr("class") === scanNote.attr("class")) {
+                // Increment proxy note and reset counter to continue looking ahead
+                let prevNum = parseInt(scanNote.attr("class").split(/\s+/)[1].split('c')[1]);
+                seqFound.push([parseInt(scanNote.attr("class").split(/\s+/)[0].split('r')[1]), prevNum]);
+                scanNote.removeClass("c" + prevNum).addClass("c" + (prevNum + 1))
+                  .removeClass("o1").addClass("o1");
+                noteLen += 0.125;
+              }
+            }
+            console.log(noteLen);
+          }
+        }
+        console.log(ctr);
+        ctr++;
+        if(ctr < 33) { sequentialize(); }
+      }, 125);
+    }
+    sequentialize();
+  }
+
   function modListen() {
 
     $(".seqTable>div").off();
+    $("button[name='seqPlayTog']").off();
 
     $(".seqTable>div").mousedown(function() {
       let tableArr = $(this).parents().eq(2).siblings().text();
@@ -59,7 +128,6 @@ $(document).ready(function() {
       if($(this).hasClass("o1")) {
         $(this).removeClass("o1");
         eval(tableArr).splice($.inArray($(this), eval(tableArr)), 1);
-        // console.log("yes");
         $(this).css("backgroundColor", "white");
       }
       else {
@@ -68,11 +136,6 @@ $(document).ready(function() {
         $(this).addClass($(this).parent().attr("class").split(/\s+/)[2]);
         $(this).css("backgroundColor", "tomato");
         eval(tableArr).push($(this));
-        // console.log(noteSeq.sort());
-        console.log(sawSeq);
-        console.log(sqSeq);
-        console.log(sinSeq);
-        console.log(triSeq);
       }
       // if($(this).hasClass("r12")) {
 
@@ -100,7 +163,6 @@ $(document).ready(function() {
         if($(this).hasClass("o1")) {
           $(this).removeClass("o1");
           eval(tableArr).splice($.inArray($(this), eval(tableArr)), 1);
-          // console.log("yes");
           $(this).css("backgroundColor", "white");
         }
         else {
@@ -109,11 +171,6 @@ $(document).ready(function() {
           $(this).addClass($(this).parent().attr("class").split(/\s+/)[2]);
           $(this).css("backgroundColor", "tomato");
           eval(tableArr).push($(this));
-          // console.log(noteSeq.sort());
-          console.log(sawSeq);
-          console.log(sqSeq);
-          console.log(sinSeq);
-          console.log(triSeq);
         }
       }
     });
@@ -133,73 +190,15 @@ $(document).ready(function() {
       randomPlaysBeforeRepeat: 0
     });
 
-    // Script for playing a sequence
-    $("button[name='seqPlayTog']").click(function() {
-      // Tempo = 60 BPM for now (1/32nd note = 0.125s)
-      // Process the 32 "ticks" per measure
-      let tableArr = $(this).parent().parent().siblings().text();
-      switch (tableArr) {
-        case "Saw Sequencing":
-          tableArr = "sawSeq";
-          break;
-        case "Square Sequencing":
-          tableArr = "sqSeq";
-          break;
-        case "Sine Sequencing":
-          tableArr = "sinSeq";
-          break;
-        case "Triangle Sequencing":
-          tableArr = "triSeq";
-          break;
-      }
-      // console.log(tableArr);
-      let ctr = 1;
-      // Sort sequence input data
-      eval(tableArr).sort(function(a, b) {
-        colA = parseInt(a.attr("class").split(/\s+/)[1].split('c')[1]);
-        colB = parseInt(b.attr("class").split(/\s+/)[1].split('c')[1]);
-        if(colA === colB) { return 0; }
-        else if(colA > colB) { return 1; }
-        else { return -1; }
-      });
-      seqFound = [];
-      function sequentialize() {
-        setTimeout(() => {
-          // Find out what notes are triggering on this tick
-          for(let i = 0; i < eval(tableArr).length; i++) {
-            let nsRow = parseInt(eval(tableArr)[i].attr("class").split(/\s+/)[0].split('r')[1]);
-            if(eval(tableArr)[i].hasClass("c" + ctr) &&
-              // https://www.codegrepper.com/code-examples/javascript/js+2d+array+includes
-              !seqFound.some(row => JSON.stringify(row) === JSON.stringify([nsRow, ctr]))
-            ) {
-              // For each triggered note, search ahead to see how long it should be sustained
-              let noteLen = 0.125;
-              // Proxy note object
-              let scanNote = eval(tableArr)[i].clone()
-                .removeClass("c" + ctr).addClass("c" + (ctr + 1))
-                .removeClass("o1").addClass("o1");
-              for(let j = i; j < eval(tableArr).length; j++) {
-                // See if "one tick ahead" exists
-                if(eval(tableArr)[j].attr("class") === scanNote.attr("class")) {
-                  // Increment proxy note and reset counter to continue looking ahead
-                  let prevNum = parseInt(scanNote.attr("class").split(/\s+/)[1].split('c')[1]);
-                  seqFound.push([parseInt(scanNote.attr("class").split(/\s+/)[0].split('r')[1]), prevNum]);
-                  scanNote.removeClass("c" + prevNum).addClass("c" + (prevNum + 1))
-                    .removeClass("o1").addClass("o1");
-                  noteLen += 0.125;
-                }
-              }
-              console.log(noteLen);
-            }
-          }
-          console.log(ctr);
-          ctr++;
-          if(ctr < 33) { sequentialize(); }
-        }, 125);
-      }
-      sequentialize();
-    });
+    $("button[name='seqPlayTog']").click(function() { playSequence.call(this, "none"); });
   }
+
+  $("#playAll").click(function() {
+    playSequence.call(this, "sawSeq");
+    playSequence.call(this, "sqSeq");
+    playSequence.call(this, "sinSeq");
+    playSequence.call(this, "triSeq");
+  });
 
   // Modal declarations
   new jBox("Modal", {
