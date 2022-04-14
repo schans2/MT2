@@ -96,34 +96,42 @@ $(document).ready(function() {
       // Tempo = 60 BPM for now (1/32nd note = 0.125s)
       // Process the 32 "ticks" per measure
       let ctr = 1;
+      // Sort sequence input data
+      noteSeq.sort(function(a, b) {
+        colA = parseInt(a.attr("class").split(/\s+/)[1].split('c')[1]);
+        colB = parseInt(b.attr("class").split(/\s+/)[1].split('c')[1]);
+        if(colA === colB) { return 0; }
+        else if(colA > colB) { return 1; }
+        else { return -1; }
+      });
+      seqFound = [];
       function sequentialize() {
         setTimeout(() => {
           // Find out what notes are triggering on this tick
           for(let i = 0; i < noteSeq.length; i++) {
-            if(noteSeq[i].hasClass("c" + ctr)) {
-              // FOr each triggered note, search ahead to see how long it should be sustained
+            let nsRow = parseInt(noteSeq[i].attr("class").split(/\s+/)[0].split('r')[1]);
+            if(noteSeq[i].hasClass("c" + ctr) &&
+              // https://www.codegrepper.com/code-examples/javascript/js+2d+array+includes
+              !seqFound.some(row => JSON.stringify(row) === JSON.stringify([nsRow, ctr]))
+            ) {
+              // For each triggered note, search ahead to see how long it should be sustained
               let noteLen = 0.125;
               // Proxy note object
               let scanNote = noteSeq[i].clone()
                 .removeClass("c" + ctr).addClass("c" + (ctr + 1))
                 .removeClass("o1").addClass("o1");
-              for(let j = 0; j < noteSeq.length; j++) {
+              for(let j = i; j < noteSeq.length; j++) {
                 // See if "one tick ahead" exists
                 if(noteSeq[j].attr("class") === scanNote.attr("class")) {
                   // Increment proxy note and reset counter to continue looking ahead
-                  let prevCtr = scanNote.attr("class").split(/\s+/)[1];
-                  let nextNum = prevCtr[2] ? parseInt((prevCtr[1] + prevCtr[2])) + 1
-                    : parseInt(prevCtr[1]) + 1;
-                  // console.log(scanNote);
-                  scanNote.removeClass(prevCtr).addClass("c" + nextNum)
+                  let prevNum = parseInt(scanNote.attr("class").split(/\s+/)[1].split('c')[1]);
+                  seqFound.push([parseInt(scanNote.attr("class").split(/\s+/)[0].split('r')[1]), prevNum]);
+                  scanNote.removeClass("c" + prevNum).addClass("c" + (prevNum + 1))
                     .removeClass("o1").addClass("o1");
-                  // console.log(scanNote);
                   noteLen += 0.125;
-                  console.log(noteLen);
-                  j = 0; // Still inconsistent depending on input order
-                  // Look into array sorting
                 }
               }
+              console.log(noteLen);
             }
           }
           console.log(ctr);
