@@ -28,6 +28,96 @@ $(document).ready(function() {
     eval(playStatus).setVolume($(this).val());
   });
 
+  let activeKeys = [];
+
+  $("body").keydown(function(e) {
+    // console.log(e.code);
+    switch(e.code) {
+      case "KeyA":
+        // C
+        break;
+      case "KeyW":
+        // C# / Db
+        break;
+      case "KeyS":
+        // D
+        break;
+      case "KeyE":
+        // D# / Eb
+        break;
+      case "KeyD":
+        // E
+        break;
+      case "KeyF":
+        // F
+        break;
+      case "KeyT":
+        // F# / Gb
+        break;
+      case "KeyG":
+        // G
+        break;
+      case "KeyY":
+        // G# / Ab
+        break;
+      case "KeyH":
+        // A
+        break;
+      case "KeyU":
+        // A# / Bb
+        break;
+      case "KeyJ":
+        // B
+        break;
+      case "KeyK":
+        // C + 12
+        break;
+      case "KeyO":
+        // C# / Db + 12
+        break;
+      case "KeyL":
+        // D + 12
+        break;
+      case "KeyP":
+        // D# / Eb + 12
+        break;
+      case "Semicolon":
+        // E + 12
+        break;
+      case "Quote":
+        // F + 12
+        break;
+      case "Digit1":
+        // Switch to octave 1
+        break;
+      case "Digit2":
+        // Switch to octave 2
+        break;
+      case "Digit3":
+        // Switch to octave 3
+        break;
+      case "Digit4":
+        // Switch to octave 4
+        break;
+      case "Digit5":
+        // Switch to octave 5
+        break;
+    }
+    if(!activeKeys.includes(e.code)) {
+      console.log(e.code);
+      activeKeys.push(e.code);
+      console.log(activeKeys);
+    }
+  });
+
+  $("body").keyup(function(e) {
+    if(activeKeys.includes(e.code)) {
+      console.log(e.code);
+      activeKeys.splice(activeKeys.indexOf(e.code), 1);
+      console.log(activeKeys);
+    }
+  });
+
   let noteSeq = [];
   let sawSeq = [];
   let sqSeq = [];
