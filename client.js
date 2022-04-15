@@ -60,6 +60,10 @@ $(document).ready(function() {
           break;
       }
     }
+    else if(tableArr === "sawSeq") { instrument = "saw"; }
+    else if(tableArr === "sqSeq") { instrument = "square"; }
+    else if(tableArr === "sinSeq") { instrument = "sine"; }
+    else if(tableArr === "triSeq") { instrument = "triangle"; }
     let ctr = 1;
     // Sort sequence input data
     eval(tableArr).sort(function(a, b) {
