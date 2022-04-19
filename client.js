@@ -10,6 +10,7 @@ $(document).ready(function() {
   let drag = false;
   let octave = 1;
   let tempoTick = 0.0625 // Seconds per 32nd note
+  let selectedIns = "none";
 
   $("body").mouseup(function() { drag = false; });
 
@@ -27,6 +28,25 @@ $(document).ready(function() {
 
   $("#vol").on("input", function() {
     eval(playStatus).setVolume($(this).val());
+  });
+
+  $("input[name='insSelect']").change(function() {
+    selectedIns = $(this).val();
+    $(".modOpen").prop("disabled", false);
+    switch(selectedIns) {
+      case "saw":
+        $("#sawMod").prop("disabled", true);
+        break;
+      case "square":
+        $("#sqMod").prop("disabled", true);
+        break;
+      case "sine":
+        $("#sinMod").prop("disabled", true);
+        break;
+      case "triangle":
+        $("#triMod").prop("disabled", true);
+        break;
+    }
   });
 
   let activeKeys = [];
@@ -370,10 +390,10 @@ $(document).ready(function() {
   }
 
   $("#playAll").click(function() {
-    playSequence.call(this, "sawSeq");
-    playSequence.call(this, "sqSeq");
-    playSequence.call(this, "sinSeq");
-    playSequence.call(this, "triSeq");
+    if(selectedIns !== "saw") { playSequence.call(this, "sawSeq"); }
+    if(selectedIns !== "square") { playSequence.call(this, "sqSeq"); }
+    if(selectedIns !== "sine") { playSequence.call(this, "sinSeq"); }
+    if(selectedIns !== "triangle") { playSequence.call(this, "triSeq"); }
   });
 
   // Modal declarations

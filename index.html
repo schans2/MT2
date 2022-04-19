@@ -20,10 +20,21 @@
     <button type="button" class="inst" name="triangle">Triangle</button>
     <input type="number" min="30" max="240" step="1" value="120" id="tempo"/>
     <br/>
-    <button type="button" id="sawMod">Saw Modal</button>
-    <button type="button" id="sqMod">Square Modal</button>
-    <button type="button" id="sinMod">Sine Modal</button>
-    <button type="button" id="triMod">Triangle Modal</button>
+    <input type="radio" name="insSelect" id="sawSel" value="saw"/>
+    <label for="sawSel">Saw</label>
+    <input type="radio" name="insSelect" id="sqSel" value="square"/>
+    <label for="sqSel">Square</label>
+    <input type="radio" name="insSelect" id="sinSel" value="sine"/>
+    <label for="sinSel">Sine</label>
+    <input type="radio" name="insSelect" id="triSel" value="triangle"/>
+    <label for="triSel">Triangle</label>
+    <input type="radio" name="insSelect" id="noneSel" value="none" checked/>
+    <label for="noneSel">None</label>
+    <br/>
+    <button type="button" class="modOpen" id="sawMod">Saw Modal</button>
+    <button type="button" class="modOpen" id="sqMod">Square Modal</button>
+    <button type="button" class="modOpen" id="sinMod">Sine Modal</button>
+    <button type="button" class="modOpen" id="triMod">Triangle Modal</button>
     <br/>
     <button type="button" id="playAll">Play All Sequences</button>
     <div id="seqContainer">
