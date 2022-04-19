@@ -9,6 +9,7 @@ $(document).ready(function() {
   // Modal variables
   let drag = false;
   let octave = 1;
+  let tempoTick = 0.0625 // Seconds per 32nd note
 
   $("body").mouseup(function() { drag = false; });
 
@@ -26,6 +27,13 @@ $(document).ready(function() {
 
   $("#vol").on("input", function() {
     eval(playStatus).setVolume($(this).val());
+  });
+
+  $("#tempo").change(function() {
+    // Tempo is calculated by 60 seconds per min over the BPM value to get how many seconds a quarter note takes
+    tempoTick = 60 / $(this).val();
+    // This is then divided by 8 to get the time of a 32nd note -- the fundamental time unit for this app
+    tempoTick /= 8;
   });
 
   let sawSeq = [];
@@ -123,7 +131,7 @@ $(document).ready(function() {
             !seqFound.some(row => JSON.stringify(row) === JSON.stringify([nsRow, ctr]))
           ) {
             // For each triggered note, search ahead to see how long it should be sustained
-            noteLen = 0.125;
+            noteLen = tempoTick;
             // Proxy note object
             let scanNote = eval(tableArr)[i].clone()
               .removeClass("c" + ctr).addClass("c" + (ctr + 1))
@@ -136,7 +144,7 @@ $(document).ready(function() {
                 seqFound.push([parseInt(scanNote.attr("class").split(/\s+/)[0].split('r')[1]), prevNum]);
                 scanNote.removeClass("c" + prevNum).addClass("c" + (prevNum + 1))
                   .removeClass("o" + nsOct).addClass("o" + nsOct);
-                noteLen += 0.125;
+                noteLen += tempoTick;
               }
             }
             console.log(noteLen);
@@ -155,7 +163,7 @@ $(document).ready(function() {
         console.log(ctr);
         ctr++;
         if(ctr < 33) { sequentialize(); }
-      }, 125);
+      }, (tempoTick * 1000));
     }
     sequentialize();
   }
