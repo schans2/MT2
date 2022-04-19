@@ -265,6 +265,9 @@ $(document).ready(function() {
           triSeq = [];
           break;
       }
+      $(this).siblings().each(function() {
+        $(this).children().css("backgroundColor", "white");
+      });
     });
   }
 
