@@ -28,7 +28,6 @@ $(document).ready(function() {
     eval(playStatus).setVolume($(this).val());
   });
 
-  let noteSeq = [];
   let sawSeq = [];
   let sqSeq = [];
   let sinSeq = [];
@@ -250,6 +249,23 @@ $(document).ready(function() {
     });
 
     $("button[name='seqPlayTog']").click(function() { playSequence.call(this, "none"); });
+
+    $("button[name='clearSeq']").click(function() {
+      switch($(this).parent().parent().siblings().text()) {
+        case "Saw Sequencing":
+          sawSeq = [];
+          break;
+        case "Square Sequencing":
+          sqSeq = [];
+          break;
+        case "Sine Sequencing":
+          sinSeq = [];
+          break;
+        case "Triangle Sequencing":
+          triSeq = [];
+          break;
+      }
+    });
   }
 
   $("#playAll").click(function() {
