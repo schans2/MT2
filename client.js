@@ -50,82 +50,162 @@ $(document).ready(function() {
   });
 
   let activeKeys = [];
+  let activeOct = 3;
 
   $("body").keydown(function(e) {
     // console.log(e.code);
-    switch(e.code) {
-      case "KeyA":
-        // C
-        break;
-      case "KeyW":
-        // C# / Db
-        break;
-      case "KeyS":
-        // D
-        break;
-      case "KeyE":
-        // D# / Eb
-        break;
-      case "KeyD":
-        // E
-        break;
-      case "KeyF":
-        // F
-        break;
-      case "KeyT":
-        // F# / Gb
-        break;
-      case "KeyG":
-        // G
-        break;
-      case "KeyY":
-        // G# / Ab
-        break;
-      case "KeyH":
-        // A
-        break;
-      case "KeyU":
-        // A# / Bb
-        break;
-      case "KeyJ":
-        // B
-        break;
-      case "KeyK":
-        // C + 12
-        break;
-      case "KeyO":
-        // C# / Db + 12
-        break;
-      case "KeyL":
-        // D + 12
-        break;
-      case "KeyP":
-        // D# / Eb + 12
-        break;
-      case "Semicolon":
-        // E + 12
-        break;
-      case "Quote":
-        // F + 12
-        break;
-      case "Digit1":
-        // Switch to octave 1
-        break;
-      case "Digit2":
-        // Switch to octave 2
-        break;
-      case "Digit3":
-        // Switch to octave 3
-        break;
-      case "Digit4":
-        // Switch to octave 4
-        break;
-      case "Digit5":
-        // Switch to octave 5
-        break;
-    }
     if(!activeKeys.includes(e.code)) {
       console.log(e.code);
+      if(selectedIns !== "none") {
+        switch(e.code) {
+          case "KeyA":
+            // C
+            eval(selectedIns).play({
+              pitch: ("C" + activeOct),
+              label: ("C" + activeOct)
+            });
+            break;
+          case "KeyW":
+            // C# / Db
+            eval(selectedIns).play({
+              pitch: ("C#" + activeOct),
+              label: ("C#" + activeOct)
+            });
+            break;
+          case "KeyS":
+            // D
+            eval(selectedIns).play({
+              pitch: ("D" + activeOct),
+              label: ("D" + activeOct)
+            });
+            break;
+          case "KeyE":
+            // D# / Eb
+            eval(selectedIns).play({
+              pitch: ("D#" + activeOct),
+              label: ("D#" + activeOct)
+            });
+            break;
+          case "KeyD":
+            // E
+            eval(selectedIns).play({
+              pitch: ("E" + activeOct),
+              label: ("E" + activeOct)
+            });
+            break;
+          case "KeyF":
+            // F
+            eval(selectedIns).play({
+              pitch: ("F" + activeOct),
+              label: ("F" + activeOct)
+            });
+            break;
+          case "KeyT":
+            // F# / Gb
+            eval(selectedIns).play({
+              pitch: ("F#" + activeOct),
+              label: ("F#" + activeOct)
+            });
+            break;
+          case "KeyG":
+            // G
+            eval(selectedIns).play({
+              pitch: ("G" + activeOct),
+              label: ("G" + activeOct)
+            });
+            break;
+          case "KeyY":
+            // G# / Ab
+            eval(selectedIns).play({
+              pitch: ("G#" + activeOct),
+              label: ("G#" + activeOct)
+            });
+            break;
+          case "KeyH":
+            // A
+            eval(selectedIns).play({
+              pitch: ("A" + activeOct),
+              label: ("A" + activeOct)
+            });
+            break;
+          case "KeyU":
+            // A# / Bb
+            eval(selectedIns).play({
+              pitch: ("A#" + activeOct),
+              label: ("A#" + activeOct)
+            });
+            break;
+          case "KeyJ":
+            // B
+            eval(selectedIns).play({
+              pitch: ("B" + activeOct),
+              label: ("B" + activeOct)
+            });
+            break;
+          case "KeyK":
+            // C + 12
+            eval(selectedIns).play({
+              pitch: ("C" + (activeOct + 1)),
+              label: ("C" + (activeOct + 1))
+            });
+            break;
+          case "KeyO":
+            // C# / Db + 12
+            eval(selectedIns).play({
+              pitch: ("C#" + (activeOct + 1)),
+              label: ("C#" + (activeOct + 1))
+            });
+            break;
+          case "KeyL":
+            // D + 12
+            eval(selectedIns).play({
+              pitch: ("D" + (activeOct + 1)),
+              label: ("D" + (activeOct + 1))
+            });
+            break;
+          case "KeyP":
+            // D# / Eb + 12
+            eval(selectedIns).play({
+              pitch: ("D#" + (activeOct + 1)),
+              label: ("D#" + (activeOct + 1))
+            });
+            break;
+          case "Semicolon":
+            // E + 12
+            eval(selectedIns).play({
+              pitch: ("E" + (activeOct + 1)),
+              label: ("E" + (activeOct + 1))
+            });
+            break;
+          case "Quote":
+            // F + 12
+            eval(selectedIns).play({
+              pitch: ("F" + (activeOct + 1)),
+              label: ("F" + (activeOct + 1))
+            });
+            break;
+          case "Digit1":
+            // Switch to octave 1
+            activeOct = 1;
+            break;
+          case "Digit2":
+            // Switch to octave 2
+            activeOct = 2;
+            break;
+          case "Digit3":
+            // Switch to octave 3
+            activeOct = 3;
+            break;
+          case "Digit4":
+            // Switch to octave 4
+            activeOct = 4;
+            break;
+          case "Digit5":
+            // Switch to octave 5
+            activeOct = 5;
+            break;
+        }
+      }
       activeKeys.push(e.code);
       console.log(activeKeys);
     }
@@ -134,6 +214,82 @@ $(document).ready(function() {
   $("body").keyup(function(e) {
     if(activeKeys.includes(e.code)) {
       console.log(e.code);
+      if(selectedIns !== "none") {
+        switch(e.code) {
+          case "KeyA":
+            // C
+            eval(selectedIns).stop("C" + activeOct);
+            break;
+          case "KeyW":
+            // C# / Db
+            eval(selectedIns).stop("C#" + activeOct);
+            break;
+          case "KeyS":
+            // D
+            eval(selectedIns).stop("D" + activeOct);
+            break;
+          case "KeyE":
+            // D# / Eb
+            eval(selectedIns).stop("D#" + activeOct);
+            break;
+          case "KeyD":
+            // E
+            eval(selectedIns).stop("E" + activeOct);
+            break;
+          case "KeyF":
+            // F
+            eval(selectedIns).stop("F" + activeOct);
+            break;
+          case "KeyT":
+            // F# / Gb
+            eval(selectedIns).stop("F#" + activeOct);
+            break;
+          case "KeyG":
+            // G
+            eval(selectedIns).stop("G" + activeOct);
+            break;
+          case "KeyY":
+            // G# / Ab
+            eval(selectedIns).stop("G#" + activeOct);
+            break;
+          case "KeyH":
+            // A
+            eval(selectedIns).stop("A" + activeOct);
+            break;
+          case "KeyU":
+            // A# / Bb
+            eval(selectedIns).stop("A#" + activeOct);
+            break;
+          case "KeyJ":
+            // B
+            eval(selectedIns).stop("B" + activeOct);
+            break;
+          case "KeyK":
+            // C + 12
+            eval(selectedIns).stop("C" + (activeOct + 1));
+            break;
+          case "KeyO":
+            // C# / Db + 12
+            eval(selectedIns).stop("C#" + (activeOct + 1));
+            break;
+          case "KeyL":
+            // D + 12
+            eval(selectedIns).stop("D" + (activeOct + 1));
+            break;
+          case "KeyP":
+            // D# / Eb + 12
+            eval(selectedIns).stop("D#" + (activeOct + 1));
+            break;
+          case "Semicolon":
+            // E + 12
+            eval(selectedIns).stop("E" + (activeOct + 1));
+            break;
+          case "Quote":
+            // F + 12
+            eval(selectedIns).stop("F" + (activeOct + 1));
+            break;
+        }
+      }
       activeKeys.splice(activeKeys.indexOf(e.code), 1);
       console.log(activeKeys);
     }
