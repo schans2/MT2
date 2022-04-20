@@ -1,33 +1,10 @@
 $(document).ready(function() {
 
+  // Instrument declarations
   let saw = new Wad({source: "sawtooth", pitch: "C2", env: {hold: -1}});
   let square = new Wad({source: "square", pitch: "G3", env: {hold: -1}});
   let sine = new Wad({source: "sine", pitch: "Db3", env: {hold: -1}});
   let triangle = new Wad({source: "square", pitch: "D#3", env: {hold: -1}});
-  let playStatus = "none";
-
-  // Modal variables
-  let drag = false;
-  let octave = 1;
-  let tempoTick = 0.0625 // Seconds per 32nd note
-
-  $("body").mouseup(function() { drag = false; });
-
-  $(".inst").click(function() {
-    if(playStatus !== this.name) {
-      eval(this.name).play();
-      $("#vol").val(eval(this.name).volume);
-      playStatus = this.name;
-    }
-    else {
-      eval(this.name).stop();
-      playStatus = "none";
-    }
-  });
-
-  // $("#vol").on("input", function() {
-  //   eval(playStatus).setVolume($(this).val());
-  // });
 
   // Volume variables
   let mastVol = 0.5;
@@ -37,6 +14,7 @@ $(document).ready(function() {
   let triVol = 0.125;
   let volTotal = 200;
 
+  // Volume control listener
   $("input[name='vol']").change(function() {
     mastVol = $("#mastVol").val();
     volTotal = (
@@ -61,6 +39,7 @@ $(document).ready(function() {
   let activeKeys = [];
   let activeOct = 3;
 
+  // Instrument selector handler
   $("input[name='insSelect']").change(function() {
     selectedIns = $(this).val();
     $(".modOpen").prop("disabled", false);
@@ -84,8 +63,8 @@ $(document).ready(function() {
     }
   });
 
+  // Instrument playing handler
   $("body").keydown(function(e) {
-    // console.log(e.code);
     if(!activeKeys.includes(e.code)) {
       console.log(e.code);
       if(selectedIns !== "none") {
@@ -257,7 +236,6 @@ $(document).ready(function() {
         }
       }
       activeKeys.push(e.code);
-      console.log(activeKeys);
     }
   });
 
@@ -341,9 +319,15 @@ $(document).ready(function() {
         }
       }
       activeKeys.splice(activeKeys.indexOf(e.code), 1);
-      console.log(activeKeys);
     }
   });
+
+  // Modal sequencing variables
+  let drag = false;
+  let octave = 1;
+  let tempoTick = 0.0625 // Seconds per 32nd note
+
+  $("body").mouseup(function() { drag = false; });
 
   $("#tempo").change(function() {
     // Tempo is calculated by 60 seconds per min over the BPM value to get how many seconds a quarter note takes
@@ -352,6 +336,7 @@ $(document).ready(function() {
     tempoTick /= 8;
   });
 
+  // Note sequence declarations (not actually unused, called in eval)
   let sawSeq = [];
   let sqSeq = [];
   let sinSeq = [];
@@ -359,7 +344,6 @@ $(document).ready(function() {
 
   // Script for playing a sequence
   function playSequence(tableArr) {
-    // Tempo = 60 BPM for now (1/32nd note = 0.125s)
     // Process the 32 "ticks" per measure
     let instrument = "";
     let insVol = 0.1;
@@ -580,13 +564,6 @@ $(document).ready(function() {
         if($(this).hasClass('o' + octave)) { $(this).show(1); }
         else { $(this).hide(1); }
       });
-    });
-
-    // Currently unused -- need to incorporate
-    let itr = new Wad.SoundIterator({
-      files: [saw, square, sine, triangle],
-      random: false,
-      randomPlaysBeforeRepeat: 0
     });
 
     $("button[name='seqPlayTog']").click(function() { playSequence.call(this, "none"); });
