@@ -404,77 +404,79 @@ $(document).ready(function() {
         let notePitch = "A4";
         // Find out what notes are triggering on this tick
         for(let i = 0; i < eval(tableArr).length; i++) {
-          let nsRow = parseInt(eval(tableArr)[i].attr("class").split(/\s+/)[0].split('r')[1]);
-          let nsOct = eval(tableArr)[i].attr("class").split(/\s+/)[2].split('o')[1];
-          switch(nsRow) {
-            case 12:
-              notePitch = "C" + nsOct;
-              break;
-            case 11:
-              notePitch = "C#" + nsOct;
-              break;
-            case 10:
-              notePitch = "D" + nsOct;
-              break;
-            case 9:
-              notePitch = "D#" + nsOct;
-            case 8:
-              notePitch = "E" + nsOct;
-              break;
-            case 7:
-              notePitch = "F" + nsOct;
-              break;
-            case 6:
-              notePitch = "F#" + nsOct;
-              break;
-            case 5:
-              notePitch = "G" + nsOct;
-              break;
-            case 4:
-              notePitch = "G#" + nsOct;
-              break;
-            case 3:
-              notePitch = "A" + nsOct;
-              break;
-            case 2:
-              notePitch = "A#" + nsOct;
-              break;
-            case 1:
-              notePitch = "B" + nsOct;
-              break;
-          }
-          if(eval(tableArr)[i].hasClass("c" + ctr) &&
-            // https://www.codegrepper.com/code-examples/javascript/js+2d+array+includes
-            !seqFound.some(row => JSON.stringify(row) === JSON.stringify([nsRow, ctr]))
-          ) {
-            // For each triggered note, search ahead to see how long it should be sustained
-            noteLen = tempoTick;
-            // Proxy note object
-            let scanNote = eval(tableArr)[i].clone()
-              .removeClass("c" + ctr).addClass("c" + (ctr + 1))
-              .removeClass("o" + nsOct).addClass("o" + nsOct);
-            for(let j = i; j < eval(tableArr).length; j++) {
-              // See if "one tick ahead" exists
-              if(eval(tableArr)[j].attr("class") === scanNote.attr("class")) {
-                // Increment proxy note and reset counter to continue looking ahead
-                let prevNum = parseInt(scanNote.attr("class").split(/\s+/)[1].split('c')[1]);
-                seqFound.push([parseInt(scanNote.attr("class").split(/\s+/)[0].split('r')[1]), prevNum]);
-                scanNote.removeClass("c" + prevNum).addClass("c" + (prevNum + 1))
-                  .removeClass("o" + nsOct).addClass("o" + nsOct);
-                noteLen += tempoTick;
-              }
+          if(eval(tableArr)[i].attr("class").split(/\s+/).length === 3) {
+            let nsRow = parseInt(eval(tableArr)[i].attr("class").split(/\s+/)[0].split('r')[1]);
+            let nsOct = eval(tableArr)[i].attr("class").split(/\s+/)[2].split('o')[1];
+            switch(nsRow) {
+              case 12:
+                notePitch = "C" + nsOct;
+                break;
+              case 11:
+                notePitch = "C#" + nsOct;
+                break;
+              case 10:
+                notePitch = "D" + nsOct;
+                break;
+              case 9:
+                notePitch = "D#" + nsOct;
+              case 8:
+                notePitch = "E" + nsOct;
+                break;
+              case 7:
+                notePitch = "F" + nsOct;
+                break;
+              case 6:
+                notePitch = "F#" + nsOct;
+                break;
+              case 5:
+                notePitch = "G" + nsOct;
+                break;
+              case 4:
+                notePitch = "G#" + nsOct;
+                break;
+              case 3:
+                notePitch = "A" + nsOct;
+                break;
+              case 2:
+                notePitch = "A#" + nsOct;
+                break;
+              case 1:
+                notePitch = "B" + nsOct;
+                break;
             }
-            console.log(noteLen);
-            eval(instrument).play({
-              pitch: notePitch,
-              env: {
-                attack: 0,
-                decay: 0,
-                sustain: insVol,
-                hold: noteLen,
-                release: 0
+            if(eval(tableArr)[i].hasClass("c" + ctr) &&
+              // https://www.codegrepper.com/code-examples/javascript/js+2d+array+includes
+              !seqFound.some(row => JSON.stringify(row) === JSON.stringify([nsRow, ctr]))
+            ) {
+              // For each triggered note, search ahead to see how long it should be sustained
+              noteLen = tempoTick;
+              // Proxy note object
+              let scanNote = eval(tableArr)[i].clone()
+                .removeClass("c" + ctr).addClass("c" + (ctr + 1))
+                .removeClass("o" + nsOct).addClass("o" + nsOct);
+              for(let j = i; j < eval(tableArr).length; j++) {
+                // See if "one tick ahead" exists
+                if(eval(tableArr)[j].attr("class") === scanNote.attr("class")) {
+                  // Increment proxy note and reset counter to continue looking ahead
+                  let prevNum = parseInt(scanNote.attr("class").split(/\s+/)[1].split('c')[1]);
+                  seqFound.push([parseInt(scanNote.attr("class").split(/\s+/)[0].split('r')[1]), prevNum]);
+                  scanNote.removeClass("c" + prevNum).addClass("c" + (prevNum + 1))
+                    .removeClass("o" + nsOct).addClass("o" + nsOct);
+                  noteLen += tempoTick;
+                }
               }
-            });
+              console.log(noteLen);
+              eval(instrument).play({
+                pitch: notePitch,
+                env: {
+                  attack: 0,
+                  decay: 0,
+                  sustain: insVol,
+                  hold: noteLen,
+                  release: 0
+                }
+              });
+            }
           }
         }
         console.log(ctr);
@@ -509,8 +511,10 @@ $(document).ready(function() {
       drag = true;
       let classArr = $(this).attr("class").split(/\s+/);
       if(classArr.length === 3) {
-        $(this).removeClass(classArr[2]);
+        // console.log(eval(tableArr));
         eval(tableArr).splice($.inArray($(this), eval(tableArr)), 1);
+        $(this).removeClass(classArr[2]);
+        // console.log(eval(tableArr));
         $(this).css("backgroundColor", "white");
       }
       else {
@@ -544,8 +548,8 @@ $(document).ready(function() {
       if(drag) {
         let classArr = $(this).attr("class").split(/\s+/);
         if(classArr.length === 3) {
-          $(this).removeClass(classArr[2]);
           eval(tableArr).splice($.inArray($(this), eval(tableArr)), 1);
+          $(this).removeClass(classArr[2]);
           $(this).css("backgroundColor", "white");
         }
         else {
@@ -566,7 +570,28 @@ $(document).ready(function() {
       });
     });
 
-    $("button[name='seqPlayTog']").click(function() { playSequence.call(this, "none"); });
+    let loop = $("#seqLoop").prop("checked");
+    let intId = null;
+
+    $("input[name='seqLoop']").change(function() {
+      console.log("firing");
+      if(loop && intId) {
+        clearInterval(intId);
+        intId = null;
+      }
+      loop = $(this).is(":checked");
+      console.log(loop);
+    });
+
+    $("button[name='seqPlayTog']").click(function() {
+      // console.log(loop);
+      if(loop) {
+        intId = setInterval(function() {
+          playSequence.call(this, "none");
+        }, (tempoTick * 32000));
+      }
+      else { playSequence.call(this, "none"); }
+    });
 
     $("button[name='clearSeq']").click(function() {
       switch($(this).parent().parent().siblings().text()) {
