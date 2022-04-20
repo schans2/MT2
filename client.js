@@ -390,6 +390,8 @@ $(document).ready(function() {
     }
     let ctr = 1;
     // Sort sequence input data
+    console.log($(this));
+    console.log(tableArr);
     eval(tableArr).sort(function(a, b) {
       colA = parseInt(a.attr("class").split(/\s+/)[1].split('c')[1]);
       colB = parseInt(b.attr("class").split(/\s+/)[1].split('c')[1]);
@@ -491,6 +493,7 @@ $(document).ready(function() {
 
     $(".seqTable>div").off();
     $("button[name='seqPlayTog']").off();
+    $("input[name='seqLoop']").off();
 
     $(".seqTable>div").mousedown(function() {
       let tableArr = $(this).parents().eq(2).siblings().text();
@@ -574,7 +577,6 @@ $(document).ready(function() {
     let intId = null;
 
     $("input[name='seqLoop']").change(function() {
-      console.log("firing");
       if(loop && intId) {
         clearInterval(intId);
         intId = null;
