@@ -13,11 +13,16 @@
   <body>
     <h1>Hello, world!</h1>
     <h2>Test buttons:</h2>
-    <input type="range" min="0" max="1" step="0.005" value="1" id="vol"/>
+    <!-- <input type="range" min="0" max="1" step="0.005" value="1" id="vol"/>
     <button type="button" class="inst" name="saw">Saw</button>
     <button type="button" class="inst" name="square">Square</button>
     <button type="button" class="inst" name="sine">Sine</button>
-    <button type="button" class="inst" name="triangle">Triangle</button>
+    <button type="button" class="inst" name="triangle">Triangle</button> -->
+    <input type="range" min="0" max="1" step="0.01" value="0.5" name="vol" id="mastVol"/>
+    <input type="range" min="0" max="100" step="1" value="50" name="vol" id="sawVol"/>
+    <input type="range" min="0" max="100" step="1" value="50" name="vol" id="sqVol"/>
+    <input type="range" min="0" max="100" step="1" value="50" name="vol" id="sinVol"/>
+    <input type="range" min="0" max="100" step="1" value="50" name="vol" id="triVol"/>
     <input type="number" min="30" max="240" step="1" value="120" id="tempo"/>
     <br/>
     <input type="radio" name="insSelect" id="sawSel" value="saw"/>

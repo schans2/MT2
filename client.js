@@ -10,7 +10,6 @@ $(document).ready(function() {
   let drag = false;
   let octave = 1;
   let tempoTick = 0.0625 // Seconds per 32nd note
-  let selectedIns = "none";
 
   $("body").mouseup(function() { drag = false; });
 
@@ -26,9 +25,41 @@ $(document).ready(function() {
     }
   });
 
-  $("#vol").on("input", function() {
-    eval(playStatus).setVolume($(this).val());
+  // $("#vol").on("input", function() {
+  //   eval(playStatus).setVolume($(this).val());
+  // });
+
+  // Volume variables
+  let mastVol = 0.5;
+  let sawVol = 0.125;
+  let sqVol = 0.125;
+  let sinVol = 0.125;
+  let triVol = 0.125;
+  let volTotal = 200;
+
+  $("input[name='vol']").change(function() {
+    mastVol = $("#mastVol").val();
+    volTotal = (
+      parseInt($("#sawVol").val()) + parseInt($("#sqVol").val()) +
+      parseInt($("#sinVol").val()) + parseInt($("#triVol").val())
+    );
+    sawVol = ($("#sawVol").val() / volTotal) * mastVol;
+    sqVol = ($("#sqVol").val() / volTotal) * mastVol;
+    sinVol = ($("#sinVol").val() / volTotal) * mastVol;
+    triVol = ($("#triVol").val() / volTotal) * mastVol;
+    console.log("Master: " + mastVol);
+    console.log("Saw: " + sawVol);
+    console.log("Square: " + sqVol);
+    console.log("Sine: " + sinVol);
+    console.log("Triangle: " + triVol);
+    console.log("Vol total: " + volTotal);
   });
+
+  // Keyboard input variables
+  let selectedIns = "none";
+  let selectedInsVol = "none";
+  let activeKeys = [];
+  let activeOct = 3;
 
   $("input[name='insSelect']").change(function() {
     selectedIns = $(this).val();
@@ -36,21 +67,22 @@ $(document).ready(function() {
     switch(selectedIns) {
       case "saw":
         $("#sawMod").prop("disabled", true);
+        selectedInsVol = "sinVol";
         break;
       case "square":
         $("#sqMod").prop("disabled", true);
+        selectedInsVol = "sqVol";
         break;
       case "sine":
         $("#sinMod").prop("disabled", true);
+        selectedInsVol = "sinVol";
         break;
       case "triangle":
         $("#triMod").prop("disabled", true);
+        selectedInsVol = "triVol";
         break;
     }
   });
-
-  let activeKeys = [];
-  let activeOct = 3;
 
   $("body").keydown(function(e) {
     // console.log(e.code);
@@ -62,126 +94,144 @@ $(document).ready(function() {
             // C
             eval(selectedIns).play({
               pitch: ("C" + activeOct),
-              label: ("C" + activeOct)
+              label: ("C" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyW":
             // C# / Db
             eval(selectedIns).play({
               pitch: ("C#" + activeOct),
-              label: ("C#" + activeOct)
+              label: ("C#" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyS":
             // D
             eval(selectedIns).play({
               pitch: ("D" + activeOct),
-              label: ("D" + activeOct)
+              label: ("D" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyE":
             // D# / Eb
             eval(selectedIns).play({
               pitch: ("D#" + activeOct),
-              label: ("D#" + activeOct)
+              label: ("D#" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyD":
             // E
             eval(selectedIns).play({
               pitch: ("E" + activeOct),
-              label: ("E" + activeOct)
+              label: ("E" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyF":
             // F
             eval(selectedIns).play({
               pitch: ("F" + activeOct),
-              label: ("F" + activeOct)
+              label: ("F" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyT":
             // F# / Gb
             eval(selectedIns).play({
               pitch: ("F#" + activeOct),
-              label: ("F#" + activeOct)
+              label: ("F#" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyG":
             // G
             eval(selectedIns).play({
               pitch: ("G" + activeOct),
-              label: ("G" + activeOct)
+              label: ("G" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyY":
             // G# / Ab
             eval(selectedIns).play({
               pitch: ("G#" + activeOct),
-              label: ("G#" + activeOct)
+              label: ("G#" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyH":
             // A
             eval(selectedIns).play({
               pitch: ("A" + activeOct),
-              label: ("A" + activeOct)
+              label: ("A" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyU":
             // A# / Bb
             eval(selectedIns).play({
               pitch: ("A#" + activeOct),
-              label: ("A#" + activeOct)
+              label: ("A#" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyJ":
             // B
             eval(selectedIns).play({
               pitch: ("B" + activeOct),
-              label: ("B" + activeOct)
+              label: ("B" + activeOct),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyK":
             // C + 12
             eval(selectedIns).play({
               pitch: ("C" + (activeOct + 1)),
-              label: ("C" + (activeOct + 1))
+              label: ("C" + (activeOct + 1)),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyO":
             // C# / Db + 12
             eval(selectedIns).play({
               pitch: ("C#" + (activeOct + 1)),
-              label: ("C#" + (activeOct + 1))
+              label: ("C#" + (activeOct + 1)),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyL":
             // D + 12
             eval(selectedIns).play({
               pitch: ("D" + (activeOct + 1)),
-              label: ("D" + (activeOct + 1))
+              label: ("D" + (activeOct + 1)),
+              volume: eval(selectedInsVol)
             });
             break;
           case "KeyP":
             // D# / Eb + 12
             eval(selectedIns).play({
               pitch: ("D#" + (activeOct + 1)),
-              label: ("D#" + (activeOct + 1))
+              label: ("D#" + (activeOct + 1)),
+              volume: eval(selectedInsVol)
             });
             break;
           case "Semicolon":
             // E + 12
             eval(selectedIns).play({
               pitch: ("E" + (activeOct + 1)),
-              label: ("E" + (activeOct + 1))
+              label: ("E" + (activeOct + 1)),
+              volume: eval(selectedInsVol)
             });
             break;
           case "Quote":
             // F + 12
             eval(selectedIns).play({
               pitch: ("F" + (activeOct + 1)),
-              label: ("F" + (activeOct + 1))
+              label: ("F" + (activeOct + 1)),
+              volume: eval(selectedInsVol)
             });
             break;
           case "Digit1":
@@ -312,31 +362,48 @@ $(document).ready(function() {
     // Tempo = 60 BPM for now (1/32nd note = 0.125s)
     // Process the 32 "ticks" per measure
     let instrument = "";
+    let insVol = 0.1;
     if(tableArr === "none") {
       tableArr = $(this).parent().parent().siblings().text();
       switch(tableArr) {
         case "Saw Sequencing":
           tableArr = "sawSeq";
           instrument = "saw";
+          insVol = sawVol;
           break;
         case "Square Sequencing":
           tableArr = "sqSeq";
           instrument = "square";
+          insVol = sqVol;
           break;
         case "Sine Sequencing":
           tableArr = "sinSeq";
           instrument = "sine";
+          insVol = sinVol;
           break;
         case "Triangle Sequencing":
           tableArr = "triSeq";
           instrument = "triangle";
+          insVol = triVol;
           break;
       }
     }
-    else if(tableArr === "sawSeq") { instrument = "saw"; }
-    else if(tableArr === "sqSeq") { instrument = "square"; }
-    else if(tableArr === "sinSeq") { instrument = "sine"; }
-    else if(tableArr === "triSeq") { instrument = "triangle"; }
+    else if(tableArr === "sawSeq") {
+      instrument = "saw";
+      insVol = sawVol;
+    }
+    else if(tableArr === "sqSeq") {
+      instrument = "square";
+      insVol = sqVol;
+    }
+    else if(tableArr === "sinSeq") {
+      instrument = "sine";
+      insVol = sinVol;
+    }
+    else if(tableArr === "triSeq") {
+      instrument = "triangle";
+      insVol = triVol;
+    }
     let ctr = 1;
     // Sort sequence input data
     eval(tableArr).sort(function(a, b) {
@@ -419,7 +486,7 @@ $(document).ready(function() {
               env: {
                 attack: 0,
                 decay: 0,
-                sustain: 0.2,
+                sustain: insVol,
                 hold: noteLen,
                 release: 0
               }
