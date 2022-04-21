@@ -589,9 +589,10 @@ $(document).ready(function() {
       // console.log(loop);
       let obj = this;
       if(loop) {
+        playSequence.call(obj, "none");
         intId = setInterval(function() {
           playSequence.call(obj, "none");
-        }, (tempoTick * 32000));
+        }, (tempoTick * 38000)); // Hackjob, setInterval inherently unreliable
       }
       else { playSequence.call(obj, "none"); }
     });
