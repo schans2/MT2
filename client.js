@@ -587,12 +587,13 @@ $(document).ready(function() {
 
     $("button[name='seqPlayTog']").click(function() {
       // console.log(loop);
+      let obj = this;
       if(loop) {
         intId = setInterval(function() {
-          playSequence.call(this, "none");
+          playSequence.call(obj, "none");
         }, (tempoTick * 32000));
       }
-      else { playSequence.call(this, "none"); }
+      else { playSequence.call(obj, "none"); }
     });
 
     $("button[name='clearSeq']").click(function() {
