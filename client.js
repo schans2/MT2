@@ -573,7 +573,7 @@ $(document).ready(function() {
       });
     });
 
-    let loop = $("#seqLoop").prop("checked");
+    let loop = $("#seqLoop").prop("checked"); // Uses ID but working for now?
     let intId = null;
 
     $("input[name='seqLoop']").change(function() {
@@ -618,11 +618,32 @@ $(document).ready(function() {
     });
   }
 
+  let loopAll = $("#seqLoopAll").prop("checked");
+  let intIdAll = null;
+
+  $("#seqLoopAll").change(function() {
+    if(loopAll && intIdAll) {
+      clearInterval(intIdAll);
+      intIdAll = null;
+    }
+    loopAll = $(this).is(":checked");
+    console.log(loopAll);
+  });
+
   $("#playAll").click(function() {
-    if(selectedIns !== "saw") { playSequence.call(this, "sawSeq"); }
-    if(selectedIns !== "square") { playSequence.call(this, "sqSeq"); }
-    if(selectedIns !== "sine") { playSequence.call(this, "sinSeq"); }
-    if(selectedIns !== "triangle") { playSequence.call(this, "triSeq"); }
+    let obj = this;
+    if(selectedIns !== "saw") { playSequence.call(obj, "sawSeq"); }
+    if(selectedIns !== "square") { playSequence.call(obj, "sqSeq"); }
+    if(selectedIns !== "sine") { playSequence.call(obj, "sinSeq"); }
+    if(selectedIns !== "triangle") { playSequence.call(obj, "triSeq"); }
+    if(loopAll) {
+      intIdAll = setInterval(function() {
+        playSequence.call(obj, "sawSeq");
+        playSequence.call(obj, "sqSeq");
+        playSequence.call(obj, "sinSeq");
+        playSequence.call(obj, "triSeq");
+      }, (tempoTick * 38000)); // Hackjob, setInterval inherently unreliable
+    }
   });
 
   // Modal declarations
