@@ -1,5 +1,28 @@
 body {
-  background-color: lightgreen;
+  font-family: 'Bebas Neue', Arial, cursive;
+  color: #FAC560;
+  background-color: indigo;
+}
+
+h3 {
+  letter-spacing: 4px;
+  text-align: center;
+  font-size: xx-large;
+  margin-bottom: 0;
+  border-bottom: 2px solid #FAC560;
+}
+
+#beatCount>p, #controls>p {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  font-size: x-large;
+  letter-spacing: 1px;
+  margin-top: 0;
+}
+
+sub, sup {
+  font-size: small;
 }
 
 #seqContainer {

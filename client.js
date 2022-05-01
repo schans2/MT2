@@ -76,6 +76,7 @@ $(document).ready(function() {
               label: ("C" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(1)").css("color", "mediumspringgreen");
             break;
           case "KeyW":
             // C# / Db
@@ -84,6 +85,7 @@ $(document).ready(function() {
               label: ("C#" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(2)").css("color", "mediumspringgreen");
             break;
           case "KeyS":
             // D
@@ -92,6 +94,7 @@ $(document).ready(function() {
               label: ("D" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(3)").css("color", "mediumspringgreen");
             break;
           case "KeyE":
             // D# / Eb
@@ -100,6 +103,7 @@ $(document).ready(function() {
               label: ("D#" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(4)").css("color", "mediumspringgreen");
             break;
           case "KeyD":
             // E
@@ -108,6 +112,7 @@ $(document).ready(function() {
               label: ("E" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(5)").css("color", "mediumspringgreen");
             break;
           case "KeyF":
             // F
@@ -116,6 +121,7 @@ $(document).ready(function() {
               label: ("F" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(6)").css("color", "mediumspringgreen");
             break;
           case "KeyT":
             // F# / Gb
@@ -124,6 +130,7 @@ $(document).ready(function() {
               label: ("F#" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(7)").css("color", "mediumspringgreen");
             break;
           case "KeyG":
             // G
@@ -132,6 +139,7 @@ $(document).ready(function() {
               label: ("G" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(8)").css("color", "mediumspringgreen");
             break;
           case "KeyY":
             // G# / Ab
@@ -140,6 +148,7 @@ $(document).ready(function() {
               label: ("G#" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(9)").css("color", "mediumspringgreen");
             break;
           case "KeyH":
             // A
@@ -148,6 +157,7 @@ $(document).ready(function() {
               label: ("A" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(10)").css("color", "mediumspringgreen");
             break;
           case "KeyU":
             // A# / Bb
@@ -156,6 +166,7 @@ $(document).ready(function() {
               label: ("A#" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(11)").css("color", "mediumspringgreen");
             break;
           case "KeyJ":
             // B
@@ -164,6 +175,7 @@ $(document).ready(function() {
               label: ("B" + activeOct),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(12)").css("color", "mediumspringgreen");
             break;
           case "KeyK":
             // C + 12
@@ -172,6 +184,7 @@ $(document).ready(function() {
               label: ("C" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(13)").css("color", "mediumspringgreen");
             break;
           case "KeyO":
             // C# / Db + 12
@@ -180,6 +193,7 @@ $(document).ready(function() {
               label: ("C#" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(14)").css("color", "mediumspringgreen");
             break;
           case "KeyL":
             // D + 12
@@ -188,6 +202,7 @@ $(document).ready(function() {
               label: ("D" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(15)").css("color", "mediumspringgreen");
             break;
           case "KeyP":
             // D# / Eb + 12
@@ -196,6 +211,7 @@ $(document).ready(function() {
               label: ("D#" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(16)").css("color", "mediumspringgreen");
             break;
           case "Semicolon":
             // E + 12
@@ -204,6 +220,7 @@ $(document).ready(function() {
               label: ("E" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(17)").css("color", "mediumspringgreen");
             break;
           case "Quote":
             // F + 12
@@ -212,6 +229,7 @@ $(document).ready(function() {
               label: ("F" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
+            $("#controls>p>span:nth-child(18)").css("color", "mediumspringgreen");
             break;
           case "Digit1":
             // Switch to octave 1
@@ -247,74 +265,92 @@ $(document).ready(function() {
           case "KeyA":
             // C
             eval(selectedIns).stop("C" + activeOct);
+            $("#controls>p>span:nth-child(1)").css("color", "#FAC560");
             break;
           case "KeyW":
             // C# / Db
             eval(selectedIns).stop("C#" + activeOct);
+            $("#controls>p>span:nth-child(2)").css("color", "#FAC560");
             break;
           case "KeyS":
             // D
             eval(selectedIns).stop("D" + activeOct);
+            $("#controls>p>span:nth-child(3)").css("color", "#FAC560");
             break;
           case "KeyE":
             // D# / Eb
             eval(selectedIns).stop("D#" + activeOct);
+            $("#controls>p>span:nth-child(4)").css("color", "#FAC560");
             break;
           case "KeyD":
             // E
             eval(selectedIns).stop("E" + activeOct);
+            $("#controls>p>span:nth-child(5)").css("color", "#FAC560");
             break;
           case "KeyF":
             // F
             eval(selectedIns).stop("F" + activeOct);
+            $("#controls>p>span:nth-child(6)").css("color", "#FAC560");
             break;
           case "KeyT":
             // F# / Gb
             eval(selectedIns).stop("F#" + activeOct);
+            $("#controls>p>span:nth-child(7)").css("color", "#FAC560");
             break;
           case "KeyG":
             // G
             eval(selectedIns).stop("G" + activeOct);
+            $("#controls>p>span:nth-child(8)").css("color", "#FAC560");
             break;
           case "KeyY":
             // G# / Ab
             eval(selectedIns).stop("G#" + activeOct);
+            $("#controls>p>span:nth-child(9)").css("color", "#FAC560");
             break;
           case "KeyH":
             // A
             eval(selectedIns).stop("A" + activeOct);
+            $("#controls>p>span:nth-child(10)").css("color", "#FAC560");
             break;
           case "KeyU":
             // A# / Bb
             eval(selectedIns).stop("A#" + activeOct);
+            $("#controls>p>span:nth-child(11)").css("color", "#FAC560");
             break;
           case "KeyJ":
             // B
             eval(selectedIns).stop("B" + activeOct);
+            $("#controls>p>span:nth-child(12)").css("color", "#FAC560");
             break;
           case "KeyK":
             // C + 12
             eval(selectedIns).stop("C" + (activeOct + 1));
+            $("#controls>p>span:nth-child(13)").css("color", "#FAC560");
             break;
           case "KeyO":
             // C# / Db + 12
             eval(selectedIns).stop("C#" + (activeOct + 1));
+            $("#controls>p>span:nth-child(14)").css("color", "#FAC560");
             break;
           case "KeyL":
             // D + 12
             eval(selectedIns).stop("D" + (activeOct + 1));
+            $("#controls>p>span:nth-child(15)").css("color", "#FAC560");
             break;
           case "KeyP":
             // D# / Eb + 12
             eval(selectedIns).stop("D#" + (activeOct + 1));
+            $("#controls>p>span:nth-child(16)").css("color", "#FAC560");
             break;
           case "Semicolon":
             // E + 12
             eval(selectedIns).stop("E" + (activeOct + 1));
+            $("#controls>p>span:nth-child(17)").css("color", "#FAC560");
             break;
           case "Quote":
             // F + 12
             eval(selectedIns).stop("F" + (activeOct + 1));
+            $("#controls>p>span:nth-child(18)").css("color", "#FAC560");
             break;
         }
       }
@@ -389,6 +425,8 @@ $(document).ready(function() {
       insVol = triVol;
     }
     let ctr = 1;
+    $("#beatCount>p>span").css("color", "#FAC560");
+    $(".downbeat:nth-child(1)").css("color", "lime");
     // Sort sequence input data
     console.log($(this));
     console.log(tableArr);
@@ -483,6 +521,8 @@ $(document).ready(function() {
         }
         console.log(ctr);
         ctr++;
+        $("#beatCount>p>span").css("color", "#FAC560");
+        $("#beatCount>p>span:nth-child(" + Math.ceil(ctr / 2) + ")").css("color", "lime");
         if(ctr < 33) { sequentialize(); }
       }, (tempoTick * 1000));
     }
