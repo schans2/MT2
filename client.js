@@ -15,7 +15,7 @@ $(document).ready(function() {
   let volTotal = 200;
 
   // Volume control listener
-  $("input[name='vol']").change(function() {
+  $("input[name='vol']").on("input", function() {
     mastVol = $("#mastVol").val();
     volTotal = (
       parseInt($("#sawVol").val()) + parseInt($("#sqVol").val()) +
@@ -25,12 +25,11 @@ $(document).ready(function() {
     sqVol = ($("#sqVol").val() / volTotal) * mastVol;
     sinVol = ($("#sinVol").val() / volTotal) * mastVol;
     triVol = ($("#triVol").val() / volTotal) * mastVol;
-    console.log("Master: " + mastVol);
-    console.log("Saw: " + sawVol);
-    console.log("Square: " + sqVol);
-    console.log("Sine: " + sinVol);
-    console.log("Triangle: " + triVol);
-    console.log("Vol total: " + volTotal);
+    $("#mastVVal").val((mastVol * 100).toFixed(1));
+    $("#sawVVal").val(((sawVol / mastVol) * 100).toFixed(1));
+    $("#sqVVal").val(((sqVol / mastVol) * 100).toFixed(1));
+    $("#sinVVal").val(((sinVol / mastVol) * 100).toFixed(1));
+    $("#triVVal").val(((triVol / mastVol) * 100).toFixed(1));
   });
 
   // Keyboard input variables
@@ -357,6 +356,60 @@ $(document).ready(function() {
       activeKeys.splice(activeKeys.indexOf(e.code), 1);
     }
   });
+
+  // Updates the color of the tempo selector to match the slider gradient positioning
+  // based on the tempo value
+  function tempoColorChange(tempoValue) {
+    var colorVar;
+    if(tempoValue < 107) {
+      colorVar = ((tempoValue - 40) / 67) * 255;
+      $("#tempoSelect>fieldset, #tempoVal").css("color",
+      ("rgb(0, " + colorVar + ", " + (255 - colorVar) + ")"));
+      $("#tempoSelect>fieldset").css("borderColor",
+      ("rgb(0, " + colorVar + ", " + (255 - colorVar) + ")"));
+      $("#tempoSelect>fieldset").css("boxShadow",
+      ("0 0 10px 2px rgb(0, " + colorVar + ", " + (255 - colorVar) + ")"));
+    }
+    else if(tempoValue < 174) {
+      console.log("hit)");
+      colorVar = ((tempoValue - 107) / 67) * 255;
+      $("#tempoSelect>fieldset, #tempoVal").css("color", ("rgb(" + colorVar + ", 255, 0)"));
+      $("#tempoSelect>fieldset").css("borderColor", ("rgb(" + colorVar + ", 255, 0)"));
+      $("#tempoSelect>fieldset").css("boxShadow", ("0 0 10px 2px rgb(" + colorVar + ", 255, 0)"));
+    }
+    else {
+      colorVar = 255 - (((tempoValue - 174) / 66) * 255);
+      $("#tempoSelect>fieldset, #tempoVal").css("color", ("rgb(255, " + colorVar + ", 0)"));
+      $("#tempoSelect>fieldset").css("borderColor", ("rgb(255, " + colorVar + ", 0)"));
+      $("#tempoSelect>fieldset").css("boxShadow", ("0 0 10px 2px rgb(255, " + colorVar + ", 0)"));
+    }
+  }
+
+  // Prevents input exploit
+  $("#tempoSelect").submit(function(e) { e.preventDefault(); });
+  // Updates numerical tempo value on page and sends tempo in ms to ChucK
+  $("#tempo").on("input", function() {
+    $("#tempoVal").val($(this).val());
+    $("#tempoSelect>fieldset, #tempoVal").css("transitionDuration", "0s");
+    tempoColorChange($(this).val());
+    // Tempo is calculated by 60 seconds per min over the BPM value to get how many seconds a quarter note takes
+    tempoTick = 60 / $(this).val();
+    // This is then divided by 8 to get the time of a 32nd note -- the fundamental time unit for this app
+    tempoTick /= 8;
+  });
+  // Updates tempo slider position to match
+  $("#tempoVal").on("input", function() {
+    if($(this).val() > 39 && $(this).val() < 241) {
+      $("#tempo").val($(this).val());
+      $("#tempoSelect>fieldset, #tempoVal").css("transitionDuration", "1s");
+      tempoColorChange($(this).val());
+      // Tempo is calculated by 60 seconds per min over the BPM value to get how many seconds a quarter note takes
+      tempoTick = 60 / $(this).val();
+      // This is then divided by 8 to get the time of a 32nd note -- the fundamental time unit for this app
+      tempoTick /= 8;
+    }
+  });
+  $("#tempoVal").focusout(function() { $(this).val($("#tempo").val()); });
 
   // Modal sequencing variables
   let drag = false;

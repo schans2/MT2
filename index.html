@@ -15,33 +15,96 @@
   </head>
   <body>
     <h1>Seq & Destroy</h1>
-    <h2>Test buttons:</h2>
-    <input type="range" min="0" max="1" step="0.01" value="0.5" name="vol" id="mastVol"/>
-    <input type="range" min="0" max="100" step="1" value="50" name="vol" id="sawVol"/>
-    <input type="range" min="0" max="100" step="1" value="50" name="vol" id="sqVol"/>
-    <input type="range" min="0" max="100" step="1" value="50" name="vol" id="sinVol"/>
-    <input type="range" min="0" max="100" step="1" value="50" name="vol" id="triVol"/>
-    <input type="number" min="30" max="240" step="1" value="120" id="tempo"/>
-    <br/>
-    <input type="radio" name="insSelect" id="sawSel" value="saw"/>
-    <label for="sawSel">Saw</label>
-    <input type="radio" name="insSelect" id="sqSel" value="square"/>
-    <label for="sqSel">Square</label>
-    <input type="radio" name="insSelect" id="sinSel" value="sine"/>
-    <label for="sinSel">Sine</label>
-    <input type="radio" name="insSelect" id="triSel" value="triangle"/>
-    <label for="triSel">Triangle</label>
-    <input type="radio" name="insSelect" id="noneSel" value="none" checked/>
-    <label for="noneSel">None</label>
-    <br/>
-    <button type="button" class="modOpen" id="sawMod">Saw Modal</button>
-    <button type="button" class="modOpen" id="sqMod">Square Modal</button>
-    <button type="button" class="modOpen" id="sinMod">Sine Modal</button>
-    <button type="button" class="modOpen" id="triMod">Triangle Modal</button>
-    <br/>
-    <button type="button" id="playAll">Play All Sequences</button>
-    <input type="checkbox" id="seqLoopAll"/>
-    <label for="seqLoopAll">Loop playback</label>
+    <form id="instInputs">
+      <fieldset form="instInputs">
+        <legend>Instrument Configuration</legend>
+        <div id="ic1">
+          <h2>User Control</h2>
+          <input type="radio" name="insSelect" id="noneSel" value="none" checked/>
+          <label for="noneSel">None</label>
+          <br/>
+          <input type="radio" name="insSelect" id="sawSel" value="saw"/>
+          <label for="sawSel">Saw</label>
+          <br/>
+          <input type="radio" name="insSelect" id="sqSel" value="square"/>
+          <label for="sqSel">Square</label>
+          <br/>
+          <input type="radio" name="insSelect" id="sinSel" value="sine"/>
+          <label for="sinSel">Sine</label>
+          <br/>
+          <input type="radio" name="insSelect" id="triSel" value="triangle"/>
+          <label for="triSel">Triangle</label>
+        </div>
+        <div id="ic2">
+          <h2>Sequencing</h2>
+          <button type="button" id="playAll">Play All Sequences</button>
+          <input type="checkbox" id="seqLoopAll"/>
+          <label for="seqLoopAll">Loop</label>
+          <button type="button" class="modOpen" id="sawMod">Saw Sequencing</button>
+          <button type="button" class="modOpen" id="sqMod">Square Modal</button>
+          <button type="button" class="modOpen" id="sinMod">Sine Modal</button>
+          <button type="button" class="modOpen" id="triMod">Triangle Modal</button>
+        </div>
+        <div id="ic3">
+          <h2>Volume (% of total)</h2>
+          <div id="volCtrl">
+            <label for="mastVol" class="vr1 vc1">Master: </label>
+            <input
+              type="range" min="0" max="1" step="0.01" value="0.5"
+              name="vol" class="vr1 vc2" id="mastVol"
+            />
+            <input
+              type="number" min="0" max="100" step="0.1" value="50"
+              name="vol" class="vr1 vc3" id="mastVVal" disabled
+            />
+            <label for="sawVol" class="vr2 vc1">Saw: </label>
+            <input
+              type="range" min="0" max="100" step="1" value="50"
+              name="vol" class="vr2 vc2" id="sawVol"
+            />
+            <input
+              type="number" min="0" max="100" step="0.1" value="25"
+              name="vol" class="vr2 vc3" id="sawVVal" disabled
+            />
+            <label for="sqVol" class="vr3 vc1">Square: </label>
+            <input
+              type="range" min="0" max="100" step="1" value="50"
+              name="vol" class="vr3 vc2" id="sqVol"
+            />
+            <input
+              type="number" min="0" max="100" step="0.1" value="25"
+              name="vol" class="vr3 vc3" id="sqVVal" disabled
+            />
+            <label for="sinVol" class="vr4 vc1">Sine: </label>
+            <input
+              type="range" min="0" max="100" step="1" value="50"
+              name="vol" class="vr4 vc2" id="sinVol"
+            />
+            <input
+              type="number" min="0" max="100" step="0.1" value="25"
+              name="vol" class="vr4 vc3" id="sinVVal" disabled
+            />
+            <label for="triVol" class="vr5 vc1">Triangle: </label>
+            <input
+              type="range" min="0" max="100" step="1" value="50"
+              name="vol" class="vr5 vc2" id="triVol"
+            />
+            <input
+              type="number" min="0" max="100" step="0.1" value="25"
+              name="vol" class="vr5 vc3" id="triVVal" disabled
+            />
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <form id="tempoSelect">
+      <fieldset form="tempoSelect">
+        <legend>Tempo Selector</legend>
+        <label for="tempo">40-240 BPM:</label>
+        <input type="range" id="tempo" min="40" max="240" step="1" value="120"/>
+        <input type="number" id="tempoVal" min="40" max="240" step="1" value="120"/>
+      </fieldset>
+    </form>
     <div id="beatCount">
       <h3>Beat Counter</h3>
       <p>
