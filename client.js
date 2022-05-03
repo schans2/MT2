@@ -75,7 +75,7 @@ $(document).ready(function() {
               label: ("C" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(1)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(1)").css("color", "mediumspringgreen");
             break;
           case "KeyW":
             // C# / Db
@@ -84,7 +84,7 @@ $(document).ready(function() {
               label: ("C#" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(2)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(2)").css("color", "mediumspringgreen");
             break;
           case "KeyS":
             // D
@@ -93,7 +93,7 @@ $(document).ready(function() {
               label: ("D" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(3)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(3)").css("color", "mediumspringgreen");
             break;
           case "KeyE":
             // D# / Eb
@@ -102,7 +102,7 @@ $(document).ready(function() {
               label: ("D#" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(4)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(4)").css("color", "mediumspringgreen");
             break;
           case "KeyD":
             // E
@@ -111,7 +111,7 @@ $(document).ready(function() {
               label: ("E" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(5)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(5)").css("color", "mediumspringgreen");
             break;
           case "KeyF":
             // F
@@ -120,7 +120,7 @@ $(document).ready(function() {
               label: ("F" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(6)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(6)").css("color", "mediumspringgreen");
             break;
           case "KeyT":
             // F# / Gb
@@ -129,7 +129,7 @@ $(document).ready(function() {
               label: ("F#" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(7)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(7)").css("color", "mediumspringgreen");
             break;
           case "KeyG":
             // G
@@ -138,7 +138,7 @@ $(document).ready(function() {
               label: ("G" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(8)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(8)").css("color", "mediumspringgreen");
             break;
           case "KeyY":
             // G# / Ab
@@ -147,7 +147,7 @@ $(document).ready(function() {
               label: ("G#" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(9)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(9)").css("color", "mediumspringgreen");
             break;
           case "KeyH":
             // A
@@ -156,7 +156,7 @@ $(document).ready(function() {
               label: ("A" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(10)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(10)").css("color", "mediumspringgreen");
             break;
           case "KeyU":
             // A# / Bb
@@ -165,7 +165,7 @@ $(document).ready(function() {
               label: ("A#" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(11)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(11)").css("color", "mediumspringgreen");
             break;
           case "KeyJ":
             // B
@@ -174,7 +174,7 @@ $(document).ready(function() {
               label: ("B" + activeOct),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(12)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(12)").css("color", "mediumspringgreen");
             break;
           case "KeyK":
             // C + 12
@@ -183,7 +183,7 @@ $(document).ready(function() {
               label: ("C" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(13)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(13)").css("color", "mediumspringgreen");
             break;
           case "KeyO":
             // C# / Db + 12
@@ -192,7 +192,7 @@ $(document).ready(function() {
               label: ("C#" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(14)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(14)").css("color", "mediumspringgreen");
             break;
           case "KeyL":
             // D + 12
@@ -201,7 +201,7 @@ $(document).ready(function() {
               label: ("D" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(15)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(15)").css("color", "mediumspringgreen");
             break;
           case "KeyP":
             // D# / Eb + 12
@@ -210,7 +210,7 @@ $(document).ready(function() {
               label: ("D#" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(16)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(16)").css("color", "mediumspringgreen");
             break;
           case "Semicolon":
             // E + 12
@@ -219,7 +219,7 @@ $(document).ready(function() {
               label: ("E" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(17)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(17)").css("color", "mediumspringgreen");
             break;
           case "Quote":
             // F + 12
@@ -228,27 +228,37 @@ $(document).ready(function() {
               label: ("F" + (activeOct + 1)),
               volume: eval(selectedInsVol)
             });
-            $("#controls>p>span:nth-child(18)").css("color", "mediumspringgreen");
+            $("#noteCtrl>span:nth-child(18)").css("color", "mediumspringgreen");
             break;
           case "Digit1":
             // Switch to octave 1
             activeOct = 1;
+            $("#octCtrl>span").css("color", "#FAC560");
+            $("#octCtrl>span:nth-child(2)").css("color", "mediumspringgreen");
             break;
           case "Digit2":
             // Switch to octave 2
             activeOct = 2;
+            $("#octCtrl>span").css("color", "#FAC560");
+            $("#octCtrl>span:nth-child(3)").css("color", "mediumspringgreen");
             break;
           case "Digit3":
             // Switch to octave 3
             activeOct = 3;
+            $("#octCtrl>span").css("color", "#FAC560");
+            $("#octCtrl>span:nth-child(4)").css("color", "mediumspringgreen");
             break;
           case "Digit4":
             // Switch to octave 4
             activeOct = 4;
+            $("#octCtrl>span").css("color", "#FAC560");
+            $("#octCtrl>span:nth-child(5)").css("color", "mediumspringgreen");
             break;
           case "Digit5":
             // Switch to octave 5
             activeOct = 5;
+            $("#octCtrl>span").css("color", "#FAC560");
+            $("#octCtrl>span:nth-child(6)").css("color", "mediumspringgreen");
             break;
         }
       }
@@ -264,92 +274,92 @@ $(document).ready(function() {
           case "KeyA":
             // C
             eval(selectedIns).stop("C" + activeOct);
-            $("#controls>p>span:nth-child(1)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(1)").css("color", "#FAC560");
             break;
           case "KeyW":
             // C# / Db
             eval(selectedIns).stop("C#" + activeOct);
-            $("#controls>p>span:nth-child(2)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(2)").css("color", "#FAC560");
             break;
           case "KeyS":
             // D
             eval(selectedIns).stop("D" + activeOct);
-            $("#controls>p>span:nth-child(3)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(3)").css("color", "#FAC560");
             break;
           case "KeyE":
             // D# / Eb
             eval(selectedIns).stop("D#" + activeOct);
-            $("#controls>p>span:nth-child(4)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(4)").css("color", "#FAC560");
             break;
           case "KeyD":
             // E
             eval(selectedIns).stop("E" + activeOct);
-            $("#controls>p>span:nth-child(5)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(5)").css("color", "#FAC560");
             break;
           case "KeyF":
             // F
             eval(selectedIns).stop("F" + activeOct);
-            $("#controls>p>span:nth-child(6)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(6)").css("color", "#FAC560");
             break;
           case "KeyT":
             // F# / Gb
             eval(selectedIns).stop("F#" + activeOct);
-            $("#controls>p>span:nth-child(7)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(7)").css("color", "#FAC560");
             break;
           case "KeyG":
             // G
             eval(selectedIns).stop("G" + activeOct);
-            $("#controls>p>span:nth-child(8)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(8)").css("color", "#FAC560");
             break;
           case "KeyY":
             // G# / Ab
             eval(selectedIns).stop("G#" + activeOct);
-            $("#controls>p>span:nth-child(9)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(9)").css("color", "#FAC560");
             break;
           case "KeyH":
             // A
             eval(selectedIns).stop("A" + activeOct);
-            $("#controls>p>span:nth-child(10)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(10)").css("color", "#FAC560");
             break;
           case "KeyU":
             // A# / Bb
             eval(selectedIns).stop("A#" + activeOct);
-            $("#controls>p>span:nth-child(11)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(11)").css("color", "#FAC560");
             break;
           case "KeyJ":
             // B
             eval(selectedIns).stop("B" + activeOct);
-            $("#controls>p>span:nth-child(12)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(12)").css("color", "#FAC560");
             break;
           case "KeyK":
             // C + 12
             eval(selectedIns).stop("C" + (activeOct + 1));
-            $("#controls>p>span:nth-child(13)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(13)").css("color", "#FAC560");
             break;
           case "KeyO":
             // C# / Db + 12
             eval(selectedIns).stop("C#" + (activeOct + 1));
-            $("#controls>p>span:nth-child(14)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(14)").css("color", "#FAC560");
             break;
           case "KeyL":
             // D + 12
             eval(selectedIns).stop("D" + (activeOct + 1));
-            $("#controls>p>span:nth-child(15)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(15)").css("color", "#FAC560");
             break;
           case "KeyP":
             // D# / Eb + 12
             eval(selectedIns).stop("D#" + (activeOct + 1));
-            $("#controls>p>span:nth-child(16)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(16)").css("color", "#FAC560");
             break;
           case "Semicolon":
             // E + 12
             eval(selectedIns).stop("E" + (activeOct + 1));
-            $("#controls>p>span:nth-child(17)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(17)").css("color", "#FAC560");
             break;
           case "Quote":
             // F + 12
             eval(selectedIns).stop("F" + (activeOct + 1));
-            $("#controls>p>span:nth-child(18)").css("color", "#FAC560");
+            $("#noteCtrl>span:nth-child(18)").css("color", "#FAC560");
             break;
         }
       }
@@ -363,7 +373,7 @@ $(document).ready(function() {
     var colorVar;
     if(tempoValue < 107) {
       colorVar = ((tempoValue - 40) / 67) * 255;
-      $("#tempoSelect>fieldset, #tempoVal").css("color",
+      $("#tempoSelect>fieldset>label, #tempoVal").css("color",
       ("rgb(0, " + colorVar + ", " + (255 - colorVar) + ")"));
       $("#tempoSelect>fieldset").css("borderColor",
       ("rgb(0, " + colorVar + ", " + (255 - colorVar) + ")"));
@@ -371,15 +381,14 @@ $(document).ready(function() {
       ("0 0 10px 2px rgb(0, " + colorVar + ", " + (255 - colorVar) + ")"));
     }
     else if(tempoValue < 174) {
-      console.log("hit)");
       colorVar = ((tempoValue - 107) / 67) * 255;
-      $("#tempoSelect>fieldset, #tempoVal").css("color", ("rgb(" + colorVar + ", 255, 0)"));
+      $("#tempoSelect>fieldset>label, #tempoVal").css("color", ("rgb(" + colorVar + ", 255, 0)"));
       $("#tempoSelect>fieldset").css("borderColor", ("rgb(" + colorVar + ", 255, 0)"));
       $("#tempoSelect>fieldset").css("boxShadow", ("0 0 10px 2px rgb(" + colorVar + ", 255, 0)"));
     }
     else {
       colorVar = 255 - (((tempoValue - 174) / 66) * 255);
-      $("#tempoSelect>fieldset, #tempoVal").css("color", ("rgb(255, " + colorVar + ", 0)"));
+      $("#tempoSelect>fieldset>label, #tempoVal").css("color", ("rgb(255, " + colorVar + ", 0)"));
       $("#tempoSelect>fieldset").css("borderColor", ("rgb(255, " + colorVar + ", 0)"));
       $("#tempoSelect>fieldset").css("boxShadow", ("0 0 10px 2px rgb(255, " + colorVar + ", 0)"));
     }
@@ -413,17 +422,10 @@ $(document).ready(function() {
 
   // Modal sequencing variables
   let drag = false;
-  let octave = 1;
+  let octave = 3;
   let tempoTick = 0.0625 // Seconds per 32nd note
 
   $("body").mouseup(function() { drag = false; });
-
-  $("#tempo").change(function() {
-    // Tempo is calculated by 60 seconds per min over the BPM value to get how many seconds a quarter note takes
-    tempoTick = 60 / $(this).val();
-    // This is then divided by 8 to get the time of a 32nd note -- the fundamental time unit for this app
-    tempoTick /= 8;
-  });
 
   // Note sequence declarations (not actually unused, called in eval)
   let sawSeq = [];
@@ -679,7 +681,6 @@ $(document).ready(function() {
     });
 
     $("button[name='seqPlayTog']").click(function() {
-      // console.log(loop);
       let obj = this;
       if(loop) {
         playSequence.call(obj, "none");
@@ -749,7 +750,9 @@ $(document).ready(function() {
     onCreated: function() { modListen(); },
     onOpen: function() {
       $(".seqTable").hide(1);
-      $(".o1").show(1);
+      $(".o3").show(1);
+      octave = 3;
+      $("input[name='octave']").val(octave);
     }
   });
 
@@ -762,7 +765,9 @@ $(document).ready(function() {
     onCreated: function() { modListen(); },
     onOpen: function() {
       $(".seqTable").hide(1);
-      $(".o1").show(1);
+      $(".o3").show(1);
+      octave = 3;
+      $("input[name='octave']").val(octave);
     }
   });
 
@@ -775,7 +780,9 @@ $(document).ready(function() {
     onCreated: function() { modListen(); },
     onOpen: function() {
       $(".seqTable").hide(1);
-      $(".o1").show(1);
+      $(".o3").show(1);
+      octave = 3;
+      $("input[name='octave']").val(octave);
     }
   });
 
@@ -788,7 +795,9 @@ $(document).ready(function() {
     onCreated: function() { modListen(); },
     onOpen: function() {
       $(".seqTable").hide(1);
-      $(".o1").show(1);
+      $(".o3").show(1);
+      octave = 3;
+      $("input[name='octave']").val(octave);
     }
   });
 });

@@ -5,8 +5,9 @@ body, #ic2>button {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 60px;
   letter-spacing: 6px;
+  margin-top: 0;
 }
 
 h1, h2, h3, legend {
@@ -50,6 +51,8 @@ h2 {
   font-size: large;
 }
 
+#ic2>button:disabled { background-color: #333; }
+
 #ic2>#playAll {
   display: inline-block;
   width: 30%;
@@ -57,11 +60,16 @@ h2 {
   margin-right: 5%;
 }
 
+input[type=range] {
+  appearance: none;
+  background: transparent;
+}
+
 input[type=range]::-webkit-slider-thumb {
   appearance: none;
-  height: 30px;
-  width: 15px;
-  margin-top: -7px;
+  height: 20px;
+  width: 10px;
+  margin-top: -10px;
   background-color: #FFF;
   border-radius: 25%;
 }
@@ -73,7 +81,7 @@ input[type=range]::-webkit-slider-runnable-track {
 #volCtrl {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: 30% 50% 20%;
+  grid-template-columns: 20% 60% 10%;
   text-align: right;
 }
 
@@ -86,10 +94,20 @@ input[type=range]::-webkit-slider-runnable-track {
   margin-right: 10px;
 }
 .vc2 { grid-column: 2; }
-.vc3 { grid-column: 3; }
+.vc3 {
+  grid-column: 3;
+  font-size: 0.8em;
+}
+
+.vc3, #tempoVal {
+  font-family: 'Bebas Neue', Arial, cursive;
+  background-color: #333;
+  color: rgb(50, 255, 0);
+  transition: color 1s ease-in-out;
+}
 
 #tempoSelect {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 #tempoSelect>fieldset {
@@ -103,27 +121,23 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 #tempo {
-  appearance: none;
-  /* width: calc(100% - 368px); */
   width: 85%;
-  background: transparent;
 }
 
-#tempo::-webkit-slider-thumb { margin-top: -15px; }
+#tempo::-webkit-slider-thumb {
+  margin-top: -15px;
+  width: 15px;
+  height: 30px;
+}
 
 #tempo:focus { outline-color: #666; }
 
-#tempoVal {
-  font-family: 'Bebas Neue', Arial, cursive;
-  font-size: 1.2em;
-  /* background-color: #333; */
-  color: rgb(50, 255, 0);
-  transition: color 1s ease-in-out;
-}
+#tempoVal { font-size: 1.2em; }
 
 h3 {
   letter-spacing: 4px;
   font-size: xx-large;
+  margin-top: 50px;
   margin-bottom: 0;
   border-bottom: 2px solid #FAC560;
 }
@@ -135,6 +149,7 @@ h3 {
   font-size: x-large;
   letter-spacing: 1px;
   margin-top: 2px;
+  margin-bottom: 0;
   margin-left: 7.4%;
 }
 
@@ -143,6 +158,10 @@ h3 {
 .noteAnd { font-size: larger; }
 
 sub, sup { font-size: small; }
+
+#octCtrl>span:nth-child(4) {
+  color: mediumspringgreen;
+}
 
 #seqContainer { display: none; }
 
