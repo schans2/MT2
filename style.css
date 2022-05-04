@@ -1,4 +1,4 @@
-body, #ic2>button {
+body, #ic2>button, .seqInputs>button, .seqInputs>span>button {
   font-family: 'Bebas Neue', Arial, cursive;
   color: #FAC560;
   background-color: indigo;
@@ -34,14 +34,20 @@ h2 {
   grid-template-columns: repeat(3, 1fr);
 }
 
+#instInputs>fieldset, #tempoSelect>fieldset {
+  border-color: rgb(50, 255, 0);
+  box-shadow: 0 0 10px 2px rgb(50, 255, 0);
+  transition-property: color, border-color, box-shadow;
+  transition-timing-function: ease-in-out;
+  transition-duration: 1s;
+}
+
 #ic1 { grid-column: 1; }
 #ic2 { grid-column: 2; }
 #ic3 { grid-column: 3; }
 #ic1, #ic2, #ic3 { grid-row: 1; }
 
-#ic1>input {
-  margin-left: 30%;
-}
+#ic1>input { margin-left: 30%; }
 
 #ic2>button {
   width: 50%;
@@ -99,30 +105,16 @@ input[type=range]::-webkit-slider-runnable-track {
   font-size: 0.8em;
 }
 
-.vc3, #tempoVal {
+.vc3, #tempoVal, .seqInputs>span>input {
   font-family: 'Bebas Neue', Arial, cursive;
   background-color: #333;
   color: rgb(50, 255, 0);
   transition: color 1s ease-in-out;
 }
 
-#tempoSelect {
-  margin-top: 50px;
-}
+#tempoSelect { margin-top: 50px; }
 
-#tempoSelect>fieldset {
-  /* border-color: #333; */
-  /* color: #666; */
-  border-color: rgb(50, 255, 0);
-  box-shadow: 0 0 0 0;
-  transition-property: color, border-color, box-shadow;
-  transition-timing-function: ease-in-out;
-  transition-duration: 1s;
-}
-
-#tempo {
-  width: 85%;
-}
+#tempo { width: 87.5%; }
 
 #tempo::-webkit-slider-thumb {
   margin-top: -15px;
@@ -132,7 +124,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
 #tempo:focus { outline-color: #666; }
 
-#tempoVal { font-size: 1.2em; }
+#tempoVal, .seqInputs>span>input { font-size: 1.2em; }
 
 h3 {
   letter-spacing: 4px;
@@ -153,6 +145,13 @@ h3 {
   margin-left: 7.4%;
 }
 
+#controls>p>span {
+  text-shadow: 0 0 0;
+  transition-property: color, text-shadow;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.25s;
+}
+
 .downbeat { font-size: xx-large; }
 
 .noteAnd { font-size: larger; }
@@ -161,9 +160,22 @@ sub, sup { font-size: small; }
 
 #octCtrl>span:nth-child(4) {
   color: mediumspringgreen;
+  text-shadow: 0 0 15px;
+}
+
+.jBox-title {
+  text-align: center;
+  font-size: 2em;
+  letter-spacing: 1px;
 }
 
 #seqContainer { display: none; }
+
+.seqInputs {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 2.5%;
+}
 
 .seqTable {
   display: grid;
@@ -186,7 +198,9 @@ sub, sup { font-size: small; }
 
 .c33 { margin-top: 15%; }
 
-.seqTable>.noteAnd, .c33 { font-size: x-large; }
+.seqTable>.noteAnd, .c33, .seqInputs, .seqInputs>button, .seqInputs>span>button {
+  font-size: x-large;
+}
 
 /* Sequencing grid rows */
 .r1 { grid-row: 1; }
