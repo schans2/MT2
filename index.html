@@ -158,11 +158,19 @@
       </p>
     </div>
     <div id="seqContainer">
-      <input type="number" name="octave" step="1" min="1" max="5" value="1"/>
-      <button type="button" name="seqPlayTog">Play/Pause</button>
-      <input type="checkbox" name="seqLoop"/>
-      <label for="seqLoop">Loop sequence</label>
-      <button type="button" name="clearSeq">Clear Sequence</button>
+      <div class="seqInputs">
+        <span>
+          <label for="octave">Octave:&nbsp;&nbsp;</label>
+          <input type="number" name="octave" step="1" min="1" max="5" value="1"/>
+        </span>
+        <span>
+          <button type="button" name="seqPlayTog">Play Sequence</button>
+          &nbsp;
+          <input type="checkbox" name="seqLoop"/>
+          <label for="seqLoop">Loop</label>
+        </span>
+        <button type="button" name="clearSeq">Clear Sequence</button>
+      </div>
       <div class="seqTable m1 o5">
         <!-- Note Listing -->
         <span class="r1 c33">B</span>
