@@ -485,7 +485,7 @@ $(document).ready(function() {
     let instrument = "";
     let insVol = 0.1;
     if(tableArr === "none") {
-      tableArr = $(this).parent().parent().siblings().text();
+      tableArr = $(this).parents().eq(3).siblings().text();
       switch(tableArr) {
         case "Saw Sequencing":
           tableArr = "sawSeq";
@@ -656,10 +656,8 @@ $(document).ready(function() {
       drag = true;
       let classArr = $(this).attr("class").split(/\s+/);
       if(classArr.length === 3) {
-        // console.log(eval(tableArr));
         eval(tableArr).splice($.inArray($(this), eval(tableArr)), 1);
         $(this).removeClass(classArr[2]);
-        // console.log(eval(tableArr));
         $(this).css("backgroundColor", "white");
       }
       else {
