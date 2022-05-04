@@ -577,7 +577,7 @@ $(document).ready(function() {
         console.log(ctr);
         ctr++;
         $("#beatCount>p>span").css("color", "#FAC560");
-        $("#beatCount>p>span:nth-child(" + Math.ceil(ctr / 2) + ")").css("color", "lime");
+        $("#beatCount>p>span:nth-child(" + Math.ceil(ctr / 2) + ")").css("color", "mediumspringgreen");
         if(ctr < 33) { sequentialize(); }
       }, (tempoTick * 1000));
     }
@@ -798,6 +798,7 @@ $(document).ready(function() {
       $(".o3").show(1);
       octave = 3;
       $("input[name='octave']").val(octave);
+      $(".jBox-container").css("background", "#333");
     }
   });
 });
