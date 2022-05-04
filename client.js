@@ -658,7 +658,7 @@ $(document).ready(function() {
       if(classArr.length === 3) {
         eval(tableArr).splice($.inArray($(this), eval(tableArr)), 1);
         $(this).removeClass(classArr[2]);
-        $(this).css("backgroundColor", "white");
+        $(this).css("backgroundColor", "#333");
       }
       else {
         // Multi-color descision tree thing here
@@ -693,7 +693,7 @@ $(document).ready(function() {
         if(classArr.length === 3) {
           eval(tableArr).splice($.inArray($(this), eval(tableArr)), 1);
           $(this).removeClass(classArr[2]);
-          $(this).css("backgroundColor", "white");
+          $(this).css("backgroundColor", "#333");
         }
         else {
           // Multi-color descision tree thing here
@@ -752,7 +752,7 @@ $(document).ready(function() {
           break;
       }
       $(this).siblings().each(function() {
-        $(this).children().css("backgroundColor", "white");
+        $(this).children().css("backgroundColor", "#333");
       });
     });
   }
